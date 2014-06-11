@@ -1,13 +1,18 @@
 package com.dominic.remote;
 
+import java.util.Calendar;
+
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.media.AudioManager;
+import android.os.BatteryManager;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.Display;
@@ -18,17 +23,20 @@ import android.view.View;
 public class RemoteView extends View {
 
 	// drawing and canvas paint
-	private Paint drawPaint, canvasPaint, textPaint, drawRed;
+	private Paint drawPaint, canvasPaint, textPaint, drawRed, textRight;
 	// initial color
-	private int paintColor = 0xFFFFFFFF;
+	private final int paintColor = 0xFFFFFFFF;
 	// canvas bitmap
 	private Bitmap canvasBitmap;
 
 	private float centerX = 0;
 	private float centerY = 0;
 	private float radius = 0;
-	private int width,height,diffs;
-	public static final String CMDSTOP = "stop";
+	private int width, height, diffs;
+	private String track, artist, album;
+	private int BatteryLevel = -1;
+	private int countdown = 100;
+	private final  int countdowndefault = 100;
 
 	public RemoteView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -52,13 +60,28 @@ public class RemoteView extends View {
 		textPaint.setColor(paintColor);
 		textPaint.setAntiAlias(true);
 		textPaint.setTextSize(48);
+		textRight = new Paint();
+		textRight.setColor(paintColor);
+		textRight.setAntiAlias(true);
+		textRight.setTextSize(48);
+		textRight.setTextAlign(Paint.Align.RIGHT);
 		canvasPaint = new Paint(Paint.DITHER_FLAG);
-		Display display = ((Activity) this.getContext()).getWindowManager().getDefaultDisplay();
+		Display display = ((Activity) this.getContext()).getWindowManager()
+				.getDefaultDisplay();
 		Point size = new Point();
 		display.getSize(size);
 		width = size.x;
 		height = size.y;
-		diffs=height/20;
+		diffs = height / 20;
+
+		IntentFilter iF = new IntentFilter();
+		iF.addAction("com.android.music.metachanged");
+		iF.addAction("com.android.music.playstatechanged");
+		iF.addAction("com.android.music.playbackcomplete");
+		iF.addAction("com.android.music.queuechanged");
+
+		this.getContext().registerReceiver(mReceiver, iF);
+		updateBattery();
 	}
 
 	@Override
@@ -69,12 +92,30 @@ public class RemoteView extends View {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
+		countdown--;
+		if (countdown < 0) {
+			updateBattery();
+			countdown = countdowndefault;
+		}
 		// draw view
 		canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
-		canvas.drawRect(0, startY - diffs, width, startY + diffs, drawRed);
+		if (startY != 0)
+			canvas.drawRect(0, startY - diffs, width, startY + diffs, drawRed);
 		canvas.drawCircle(centerX, centerY, radius, drawPaint);
-		canvas.drawText("Action: " + getAction(currentPoints) + " "
-				+ getDirectionString(), 0, 35, textPaint);
+
+		canvas.drawText(track, 0, 48, textPaint);
+
+		canvas.drawText(artist, 0, 2*48, textPaint);
+
+		canvas.drawText(album, 0, 3*48, textPaint);
+
+		if (currentPoints > 1)
+			canvas.drawText("Action: " + getAction(currentPoints) + " "
+					+ getDirectionString(), 0, 4*48, textPaint);
+		Calendar c = Calendar.getInstance(); 
+
+		canvas.drawText(BatteryLevel + " %", width, 2*48, textRight);
+		canvas.drawText(c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE), width, 48, textRight);
 	}
 
 	private float lx, rx, ly, ry, x, y;
@@ -176,6 +217,9 @@ public class RemoteView extends View {
 	}
 
 	private void runAction(int action, int direction) {
+		if (direction == 0) {
+			return;
+		}
 		// AudioManager mAudioManager = (AudioManager)
 		// host.getSystemService(Context.AUDIO_SERVICE);
 		//
@@ -220,5 +264,36 @@ public class RemoteView extends View {
 			upIntent.putExtra(Intent.EXTRA_KEY_EVENT, upEvent);
 			this.getContext().sendOrderedBroadcast(upIntent, null);
 		}
+	}
+
+	private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// String action = intent.getAction();
+			// String cmd = intent.getStringExtra("command");
+			artist = intent.getStringExtra("artist");
+			album = intent.getStringExtra("album");
+			track = intent.getStringExtra("track");
+			invalidate();
+		}
+	};
+	
+	
+	private void updateBattery()
+	{
+		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+		Intent batteryStatus = this.getContext().registerReceiver(null, ifilter);
+//		// Are we charging / charged?
+//		int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+//		boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+//		                     status == BatteryManager.BATTERY_STATUS_FULL;
+//
+//		// How are we charging?
+//		int chargePlug = batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+//		boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
+//		boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
+		
+		BatteryLevel = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
 	}
 }

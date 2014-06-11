@@ -1092,5 +1092,3 @@ com.dominic.remote.R$layout
 com.dominic.remote.R$menu
 com.dominic.remote.R$string
 com.dominic.remote.R$style
-com.dominic.remote.RemoteView:
-    public static final java.lang.String CMDSTOP

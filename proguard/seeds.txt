@@ -74,7 +74,6 @@ com.dominic.remote.R$drawable: int ic_launcher
 com.dominic.remote.R$id: int action_settings
 com.dominic.remote.R$id: int container
 com.dominic.remote.R$id: int drawing
-com.dominic.remote.R$id: int textView1
 com.dominic.remote.R$layout: int activity_main
 com.dominic.remote.R$layout: int fragment_main
 com.dominic.remote.R$menu: int main

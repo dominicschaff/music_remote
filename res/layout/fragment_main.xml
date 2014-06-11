@@ -4,23 +4,10 @@
     android:layout_height="match_parent"
     tools:context="com.dominic.remote.MainActivity$PlaceholderFragment" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text=""
-        android:background="@android:color/background_dark"
-        android:textColor="@android:color/holo_blue_bright"
-        android:textSize="24sp"
-        />
-
     <com.dominic.remote.RemoteView
         android:id="@+id/drawing"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/textView1"
         android:background="#FF000000" />
 
 </RelativeLayout>

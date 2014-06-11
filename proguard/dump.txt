@@ -55459,28 +55459,34 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 71):
+Constant Pool (count = 90):
   + Integer [2130903040]
   + Integer [2131165184]
   + Integer [2131230720]
-  + Integer [2131230723]
+  + Integer [2131230722]
   + Class [android/app/Activity]
   + Class [android/app/FragmentManager]
   + Class [android/app/FragmentTransaction]
   + Class [android/view/MenuInflater]
   + Class [android/view/MenuItem]
+  + Class [android/view/View]
+  + Class [android/view/Window]
   + Class [com/dominic/remote/MainActivity]
   + Class [com/dominic/remote/a]
   + Fieldref [com/dominic/remote/MainActivity.a Landroid/app/Activity;]
   + Methodref [android/app/Activity.<init> ()V]
   + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
   + Methodref [android/app/Activity.onOptionsItemSelected (Landroid/view/MenuItem;)Z]
+  + Methodref [android/app/Activity.onWindowFocusChanged (Z)V]
   + Methodref [android/app/FragmentManager.beginTransaction ()Landroid/app/FragmentTransaction;]
   + Methodref [android/app/FragmentTransaction.add (ILandroid/app/Fragment;)Landroid/app/FragmentTransaction;]
   + Methodref [android/app/FragmentTransaction.commit ()I]
   + Methodref [android/view/MenuInflater.inflate (ILandroid/view/Menu;)V]
+  + Methodref [android/view/View.setSystemUiVisibility (I)V]
+  + Methodref [android/view/Window.getDecorView ()Landroid/view/View;]
   + Methodref [com/dominic/remote/MainActivity.getFragmentManager ()Landroid/app/FragmentManager;]
   + Methodref [com/dominic/remote/MainActivity.getMenuInflater ()Landroid/view/MenuInflater;]
+  + Methodref [com/dominic/remote/MainActivity.getWindow ()Landroid/view/Window;]
   + Methodref [com/dominic/remote/MainActivity.setContentView (I)V]
   + Methodref [com/dominic/remote/a.<init> ()V]
   + InterfaceMethodref [android/view/MenuItem.getItemId ()I]
@@ -55489,17 +55495,23 @@ Constant Pool (count = 71):
   + NameAndType [add (ILandroid/app/Fragment;)Landroid/app/FragmentTransaction;]
   + NameAndType [beginTransaction ()Landroid/app/FragmentTransaction;]
   + NameAndType [commit ()I]
+  + NameAndType [getDecorView ()Landroid/view/View;]
   + NameAndType [getFragmentManager ()Landroid/app/FragmentManager;]
   + NameAndType [getItemId ()I]
   + NameAndType [getMenuInflater ()Landroid/view/MenuInflater;]
+  + NameAndType [getWindow ()Landroid/view/Window;]
   + NameAndType [inflate (ILandroid/view/Menu;)V]
   + NameAndType [onCreate (Landroid/os/Bundle;)V]
   + NameAndType [onOptionsItemSelected (Landroid/view/MenuItem;)Z]
+  + NameAndType [onWindowFocusChanged (Z)V]
   + NameAndType [setContentView (I)V]
+  + NameAndType [setSystemUiVisibility (I)V]
   + Utf8 [()I]
   + Utf8 [()Landroid/app/FragmentManager;]
   + Utf8 [()Landroid/app/FragmentTransaction;]
   + Utf8 [()Landroid/view/MenuInflater;]
+  + Utf8 [()Landroid/view/View;]
+  + Utf8 [()Landroid/view/Window;]
   + Utf8 [()V]
   + Utf8 [(I)V]
   + Utf8 [(ILandroid/app/Fragment;)Landroid/app/FragmentTransaction;]
@@ -55507,6 +55519,7 @@ Constant Pool (count = 71):
   + Utf8 [(Landroid/os/Bundle;)V]
   + Utf8 [(Landroid/view/Menu;)Z]
   + Utf8 [(Landroid/view/MenuItem;)Z]
+  + Utf8 [(Z)V]
   + Utf8 [<init>]
   + Utf8 [Code]
   + Utf8 [Landroid/app/Activity;]
@@ -55518,32 +55531,38 @@ Constant Pool (count = 71):
   + Utf8 [android/app/FragmentTransaction]
   + Utf8 [android/view/MenuInflater]
   + Utf8 [android/view/MenuItem]
+  + Utf8 [android/view/View]
+  + Utf8 [android/view/Window]
   + Utf8 [beginTransaction]
   + Utf8 [com/dominic/remote/MainActivity]
   + Utf8 [com/dominic/remote/a]
   + Utf8 [commit]
+  + Utf8 [getDecorView]
   + Utf8 [getFragmentManager]
   + Utf8 [getItemId]
   + Utf8 [getMenuInflater]
+  + Utf8 [getWindow]
   + Utf8 [inflate]
   + Utf8 [onCreate]
   + Utf8 [onCreateOptionsMenu]
   + Utf8 [onOptionsItemSelected]
+  + Utf8 [onWindowFocusChanged]
   + Utf8 [setContentView]
+  + Utf8 [setSystemUiVisibility]
 
 Fields (count = 1):
   + Field:        a Landroid/app/Activity;
     Access flags: 0x0
       = android.app.Activity a
 
-Methods (count = 4):
+Methods (count = 5):
   - Method:       <init>()V
     Access flags: 0x1
       = public MainActivity()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #13
+      [1] invokespecial #15
         + Methodref [android/app/Activity.<init> ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -55555,35 +55574,35 @@ Methods (count = 4):
     + Code attribute instructions (code length = 44, locals = 2, stack = 4):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokespecial #14
+      [2] invokespecial #16
         + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
       [5] aload_0 v0
       [6] ldc #1
         + Integer [2130903040]
-      [8] invokevirtual #22
+      [8] invokevirtual #28
         + Methodref [com/dominic/remote/MainActivity.setContentView (I)V]
       [11] aload_1 v1
       [12] ifnonnull +26 (target=38)
       [15] aload_0 v0
-      [16] invokevirtual #20
+      [16] invokevirtual #25
         + Methodref [com/dominic/remote/MainActivity.getFragmentManager ()Landroid/app/FragmentManager;]
-      [19] invokevirtual #16
+      [19] invokevirtual #19
         + Methodref [android/app/FragmentManager.beginTransaction ()Landroid/app/FragmentTransaction;]
       [22] ldc #3
         + Integer [2131230720]
-      [24] new #11
+      [24] new #13
         + Class [com/dominic/remote/a]
       [27] dup
-      [28] invokespecial #23
+      [28] invokespecial #29
         + Methodref [com/dominic/remote/a.<init> ()V]
-      [31] invokevirtual #17
+      [31] invokevirtual #20
         + Methodref [android/app/FragmentTransaction.add (ILandroid/app/Fragment;)Landroid/app/FragmentTransaction;]
-      [34] invokevirtual #18
+      [34] invokevirtual #21
         + Methodref [android/app/FragmentTransaction.commit ()I]
       [37] pop
       [38] aload_0 v0
       [39] aload_0 v0
-      [40] putfield #12
+      [40] putfield #14
         + Fieldref [com/dominic/remote/MainActivity.a Landroid/app/Activity;]
       [43] return
       Code attribute exceptions (count = 0):
@@ -55596,12 +55615,12 @@ Methods (count = 4):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 12, locals = 2, stack = 3):
       [0] aload_0 v0
-      [1] invokevirtual #21
+      [1] invokevirtual #26
         + Methodref [com/dominic/remote/MainActivity.getMenuInflater ()Landroid/view/MenuInflater;]
       [4] ldc #2
         + Integer [2131165184]
       [6] aload_1 v1
-      [7] invokevirtual #19
+      [7] invokevirtual #22
         + Methodref [android/view/MenuInflater.inflate (ILandroid/view/Menu;)V]
       [10] iconst_1
       [11] ireturn
@@ -55613,24 +55632,48 @@ Methods (count = 4):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 21, locals = 3, stack = 2):
       [0] aload_1 v1
-      [1] invokeinterface #24
+      [1] invokeinterface #30
         + InterfaceMethodref [android/view/MenuItem.getItemId ()I]
       [6] istore_2 v2
       [7] iload_2 v2
       [8] ldc #4
-        + Integer [2131230723]
+        + Integer [2131230722]
       [10] ificmpne +5 (target=15)
       [13] iconst_1
       [14] ireturn
       [15] aload_0 v0
       [16] aload_1 v1
-      [17] invokespecial #15
+      [17] invokespecial #17
         + Methodref [android/app/Activity.onOptionsItemSelected (Landroid/view/MenuItem;)Z]
       [20] ireturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
       + Stack map table attribute (count = 1):
         - [15] Var: ...[i], Stack: (empty)
+  + Method:       onWindowFocusChanged(Z)V
+    Access flags: 0x1
+      = public void onWindowFocusChanged(boolean)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 23, locals = 2, stack = 2):
+      [0] aload_0 v0
+      [1] iload_1 v1
+      [2] invokespecial #18
+        + Methodref [android/app/Activity.onWindowFocusChanged (Z)V]
+      [5] iload_1 v1
+      [6] ifeq +16 (target=22)
+      [9] aload_0 v0
+      [10] invokevirtual #27
+        + Methodref [com/dominic/remote/MainActivity.getWindow ()Landroid/view/Window;]
+      [13] invokevirtual #24
+        + Methodref [android/view/Window.getDecorView ()Landroid/view/View;]
+      [16] sipush 5894
+      [19] invokevirtual #23
+        + Methodref [android/view/View.setSystemUiVisibility (I)V]
+      [22] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 1):
+      + Stack map table attribute (count = 1):
+        - [22] Var: ..., Stack: (empty)
 
 Class file attributes (count = 0):
 
@@ -55644,321 +55687,55 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 66):
+Constant Pool (count = 19):
   + Integer [2130903041]
-  + Integer [2131230721]
-  + String [com.android.music.metachanged]
-  + String [com.android.music.playbackcomplete]
-  + String [com.android.music.playstatechanged]
-  + String [com.android.music.queuechanged]
-  + Class [android/app/Activity]
   + Class [android/app/Fragment]
-  + Class [android/content/IntentFilter]
   + Class [android/view/LayoutInflater]
-  + Class [android/view/View]
-  + Class [android/widget/TextView]
   + Class [com/dominic/remote/a]
-  + Class [com/dominic/remote/b]
-  + Fieldref [com/dominic/remote/a.a Landroid/widget/TextView;]
-  + Fieldref [com/dominic/remote/a.b Landroid/content/BroadcastReceiver;]
-  + Methodref [android/app/Activity.registerReceiver (Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;]
   + Methodref [android/app/Fragment.<init> ()V]
-  + Methodref [android/content/IntentFilter.<init> ()V]
-  + Methodref [android/content/IntentFilter.addAction (Ljava/lang/String;)V]
   + Methodref [android/view/LayoutInflater.inflate (ILandroid/view/ViewGroup;Z)Landroid/view/View;]
-  + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
-  + Methodref [com/dominic/remote/a.getActivity ()Landroid/app/Activity;]
-  + Methodref [com/dominic/remote/b.<init> (Lcom/dominic/remote/a;)V]
   + NameAndType [<init> ()V]
-  + NameAndType [<init> (Lcom/dominic/remote/a;)V]
-  + NameAndType [a Landroid/widget/TextView;]
-  + NameAndType [addAction (Ljava/lang/String;)V]
-  + NameAndType [b Landroid/content/BroadcastReceiver;]
-  + NameAndType [findViewById (I)Landroid/view/View;]
-  + NameAndType [getActivity ()Landroid/app/Activity;]
   + NameAndType [inflate (ILandroid/view/ViewGroup;Z)Landroid/view/View;]
-  + NameAndType [registerReceiver (Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;]
-  + Utf8 [()Landroid/app/Activity;]
   + Utf8 [()V]
-  + Utf8 [(I)Landroid/view/View;]
   + Utf8 [(ILandroid/view/ViewGroup;Z)Landroid/view/View;]
-  + Utf8 [(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;]
   + Utf8 [(Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Landroid/os/Bundle;)Landroid/view/View;]
-  + Utf8 [(Lcom/dominic/remote/a;)V]
-  + Utf8 [(Ljava/lang/String;)V]
   + Utf8 [<init>]
   + Utf8 [Code]
-  + Utf8 [Landroid/content/BroadcastReceiver;]
-  + Utf8 [Landroid/widget/TextView;]
-  + Utf8 [a]
-  + Utf8 [addAction]
-  + Utf8 [android/app/Activity]
   + Utf8 [android/app/Fragment]
-  + Utf8 [android/content/IntentFilter]
   + Utf8 [android/view/LayoutInflater]
-  + Utf8 [android/view/View]
-  + Utf8 [android/widget/TextView]
-  + Utf8 [b]
-  + Utf8 [com.android.music.metachanged]
-  + Utf8 [com.android.music.playbackcomplete]
-  + Utf8 [com.android.music.playstatechanged]
-  + Utf8 [com.android.music.queuechanged]
   + Utf8 [com/dominic/remote/a]
-  + Utf8 [com/dominic/remote/b]
-  + Utf8 [findViewById]
-  + Utf8 [getActivity]
   + Utf8 [inflate]
   + Utf8 [onCreateView]
-  + Utf8 [registerReceiver]
 
-Fields (count = 2):
-  + Field:        a Landroid/widget/TextView;
-    Access flags: 0x0
-      = android.widget.TextView a
-  + Field:        b Landroid/content/BroadcastReceiver;
-    Access flags: 0x2
-      = private android.content.BroadcastReceiver b
+Fields (count = 0):
 
 Methods (count = 2):
   - Method:       <init>()V
     Access flags: 0x1
       = public a()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 17, locals = 1, stack = 4):
+    + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #18
+      [1] invokespecial #5
         + Methodref [android/app/Fragment.<init> ()V]
-      [4] aload_0 v0
-      [5] new #14
-        + Class [com/dominic/remote/b]
-      [8] dup
-      [9] aload_0 v0
-      [10] invokespecial #24
-        + Methodref [com/dominic/remote/b.<init> (Lcom/dominic/remote/a;)V]
-      [13] putfield #16
-        + Fieldref [com/dominic/remote/a.b Landroid/content/BroadcastReceiver;]
-      [16] return
+      [4] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       onCreateView(Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Landroid/os/Bundle;)Landroid/view/View;
     Access flags: 0x1
       = public android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 78, locals = 6, stack = 4):
+    + Code attribute instructions (code length = 13, locals = 5, stack = 4):
       [0] aload_1 v1
       [1] ldc #1
         + Integer [2130903041]
       [3] aload_2 v2
       [4] iconst_0
-      [5] invokevirtual #21
+      [5] invokevirtual #6
         + Methodref [android/view/LayoutInflater.inflate (ILandroid/view/ViewGroup;Z)Landroid/view/View;]
       [8] astore v4
-      [10] aload_0 v0
-      [11] aload v4
-      [13] ldc #2
-        + Integer [2131230721]
-      [15] invokevirtual #22
-        + Methodref [android/view/View.findViewById (I)Landroid/view/View;]
-      [18] checkcast #12
-        + Class [android/widget/TextView]
-      [21] putfield #15
-        + Fieldref [com/dominic/remote/a.a Landroid/widget/TextView;]
-      [24] new #9
-        + Class [android/content/IntentFilter]
-      [27] dup
-      [28] invokespecial #19
-        + Methodref [android/content/IntentFilter.<init> ()V]
-      [31] astore v5
-      [33] aload v5
-      [35] ldc #3
-        + String [com.android.music.metachanged]
-      [37] invokevirtual #20
-        + Methodref [android/content/IntentFilter.addAction (Ljava/lang/String;)V]
-      [40] aload v5
-      [42] ldc #5
-        + String [com.android.music.playstatechanged]
-      [44] invokevirtual #20
-        + Methodref [android/content/IntentFilter.addAction (Ljava/lang/String;)V]
-      [47] aload v5
-      [49] ldc #4
-        + String [com.android.music.playbackcomplete]
-      [51] invokevirtual #20
-        + Methodref [android/content/IntentFilter.addAction (Ljava/lang/String;)V]
-      [54] aload v5
-      [56] ldc #6
-        + String [com.android.music.queuechanged]
-      [58] invokevirtual #20
-        + Methodref [android/content/IntentFilter.addAction (Ljava/lang/String;)V]
-      [61] aload_0 v0
-      [62] invokevirtual #23
-        + Methodref [com/dominic/remote/a.getActivity ()Landroid/app/Activity;]
-      [65] aload_0 v0
-      [66] getfield #16
-        + Fieldref [com/dominic/remote/a.b Landroid/content/BroadcastReceiver;]
-      [69] aload v5
-      [71] invokevirtual #17
-        + Methodref [android/app/Activity.registerReceiver (Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;]
-      [74] pop
-      [75] aload v4
-      [77] areturn
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
-
-Class file attributes (count = 0):
-
-_____________________________________________________________________
-+ Program class: com/dominic/remote/b
-  Superclass:    android/content/BroadcastReceiver
-  Major version: 0x33
-  Minor version: 0x0
-  Access flags:  0x20
-    = class com.dominic.remote.b extends android.content.BroadcastReceiver
-
-Interfaces (count = 0):
-
-Constant Pool (count = 63):
-  + String [
-]
-  + String [ on ]
-  + String [album]
-  + String [artist]
-  + String [track]
-  + Class [android/content/BroadcastReceiver]
-  + Class [android/content/Intent]
-  + Class [android/widget/TextView]
-  + Class [com/dominic/remote/a]
-  + Class [com/dominic/remote/b]
-  + Class [java/lang/String]
-  + Class [java/lang/StringBuilder]
-  + Fieldref [com/dominic/remote/a.a Landroid/widget/TextView;]
-  + Fieldref [com/dominic/remote/b.a Lcom/dominic/remote/a;]
-  + Methodref [android/content/BroadcastReceiver.<init> ()V]
-  + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
-  + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
-  + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-  + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-  + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-  + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-  + NameAndType [<init> ()V]
-  + NameAndType [<init> (Ljava/lang/String;)V]
-  + NameAndType [a Landroid/widget/TextView;]
-  + NameAndType [a Lcom/dominic/remote/a;]
-  + NameAndType [append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-  + NameAndType [getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
-  + NameAndType [setText (Ljava/lang/CharSequence;)V]
-  + NameAndType [toString ()Ljava/lang/String;]
-  + NameAndType [valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-  + Utf8 [
-]
-  + Utf8 [ on ]
-  + Utf8 [()Ljava/lang/String;]
-  + Utf8 [()V]
-  + Utf8 [(Landroid/content/Context;Landroid/content/Intent;)V]
-  + Utf8 [(Lcom/dominic/remote/a;)V]
-  + Utf8 [(Ljava/lang/CharSequence;)V]
-  + Utf8 [(Ljava/lang/Object;)Ljava/lang/String;]
-  + Utf8 [(Ljava/lang/String;)Ljava/lang/String;]
-  + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuilder;]
-  + Utf8 [(Ljava/lang/String;)V]
-  + Utf8 [<init>]
-  + Utf8 [Code]
-  + Utf8 [Landroid/widget/TextView;]
-  + Utf8 [Lcom/dominic/remote/a;]
-  + Utf8 [a]
-  + Utf8 [album]
-  + Utf8 [android/content/BroadcastReceiver]
-  + Utf8 [android/content/Intent]
-  + Utf8 [android/widget/TextView]
-  + Utf8 [append]
-  + Utf8 [artist]
-  + Utf8 [com/dominic/remote/a]
-  + Utf8 [com/dominic/remote/b]
-  + Utf8 [getStringExtra]
-  + Utf8 [java/lang/String]
-  + Utf8 [java/lang/StringBuilder]
-  + Utf8 [onReceive]
-  + Utf8 [setText]
-  + Utf8 [toString]
-  + Utf8 [track]
-  + Utf8 [valueOf]
-
-Fields (count = 1):
-  + Field:        a Lcom/dominic/remote/a;
-    Access flags: 0x1010
-      = final synthetic com.dominic.remote.a a
-
-Methods (count = 2):
-  - Method:       <init>(Lcom/dominic/remote/a;)V
-    Access flags: 0x0
-      = b(com.dominic.remote.a)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 10, locals = 2, stack = 2):
-      [0] aload_0 v0
-      [1] aload_1 v1
-      [2] putfield #14
-        + Fieldref [com/dominic/remote/b.a Lcom/dominic/remote/a;]
-      [5] aload_0 v0
-      [6] invokespecial #15
-        + Methodref [android/content/BroadcastReceiver.<init> ()V]
-      [9] return
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
-  + Method:       onReceive(Landroid/content/Context;Landroid/content/Intent;)V
-    Access flags: 0x1
-      = public void onReceive(android.content.Context,android.content.Intent)
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 68, locals = 6, stack = 4):
-      [0] aload_2 v2
-      [1] ldc #4
-        + String [artist]
-      [3] invokevirtual #16
-        + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
-      [6] astore_3 v3
-      [7] aload_2 v2
-      [8] ldc #3
-        + String [album]
-      [10] invokevirtual #16
-        + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
-      [13] astore v4
-      [15] aload_2 v2
-      [16] ldc #5
-        + String [track]
-      [18] invokevirtual #16
-        + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
-      [21] astore v5
-      [23] aload_0 v0
-      [24] getfield #14
-        + Fieldref [com/dominic/remote/b.a Lcom/dominic/remote/a;]
-      [27] getfield #13
-        + Fieldref [com/dominic/remote/a.a Landroid/widget/TextView;]
-      [30] new #12
-        + Class [java/lang/StringBuilder]
-      [33] dup
-      [34] aload v5
-      [36] invokestatic #18
-        + Methodref [java/lang/String.valueOf (Ljava/lang/Object;)Ljava/lang/String;]
-      [39] invokespecial #19
-        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [42] ldc #1
-        + String [
-]
-      [44] invokevirtual #20
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [47] aload_3 v3
-      [48] invokevirtual #20
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [51] ldc #2
-        + String [ on ]
-      [53] invokevirtual #20
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [56] aload v4
-      [58] invokevirtual #20
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [61] invokevirtual #21
-        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [64] invokevirtual #17
-        + Methodref [android/widget/TextView.setText (Ljava/lang/CharSequence;)V]
-      [67] return
+      [10] aload v4
+      [12] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
 
@@ -55974,12 +55751,18 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 326):
+Constant Pool (count = 420):
   + Integer [-48128]
+  + Integer [-1]
+  + Integer [100]
   + Float [10.0]
-  + Float [35.0]
   + Float [48.0]
+  + Float [96.0]
+  + Float [144.0]
+  + Float [192.0]
   + String [ ]
+  + String [ %]
+  + String [:]
   + String [Action: ]
   + String [Change Volume]
   + String [Down]
@@ -55988,16 +55771,24 @@ Constant Pool (count = 326):
   + String [Skip Tracks]
   + String [Try other fingers]
   + String [Up]
+  + String [android.intent.action.BATTERY_CHANGED]
   + String [android.intent.action.MEDIA_BUTTON]
   + String [android.intent.extra.KEY_EVENT]
   + String [audio]
+  + String [com.android.music.metachanged]
+  + String [com.android.music.playbackcomplete]
+  + String [com.android.music.playstatechanged]
+  + String [com.android.music.queuechanged]
+  + String [level]
   + Class [android/app/Activity]
   + Class [android/content/Context]
   + Class [android/content/Intent]
+  + Class [android/content/IntentFilter]
   + Class [android/graphics/Bitmap]
   + Class [android/graphics/Bitmap$Config]
   + Class [android/graphics/Canvas]
   + Class [android/graphics/Paint]
+  + Class [android/graphics/Paint$Align]
   + Class [android/graphics/Paint$Cap]
   + Class [android/graphics/Paint$Join]
   + Class [android/graphics/Paint$Style]
@@ -56010,44 +55801,60 @@ Constant Pool (count = 326):
   + Class [android/view/View]
   + Class [android/view/WindowManager]
   + Class [com/dominic/remote/RemoteView]
+  + Class [com/dominic/remote/b]
   + Class [java/lang/Math]
   + Class [java/lang/String]
   + Class [java/lang/StringBuilder]
+  + Class [java/util/Calendar]
   + Fieldref [android/graphics/Bitmap$Config.ARGB_8888 Landroid/graphics/Bitmap$Config;]
+  + Fieldref [android/graphics/Paint$Align.RIGHT Landroid/graphics/Paint$Align;]
   + Fieldref [android/graphics/Paint$Cap.ROUND Landroid/graphics/Paint$Cap;]
   + Fieldref [android/graphics/Paint$Join.ROUND Landroid/graphics/Paint$Join;]
   + Fieldref [android/graphics/Paint$Style.FILL_AND_STROKE Landroid/graphics/Paint$Style;]
   + Fieldref [android/graphics/Paint$Style.STROKE Landroid/graphics/Paint$Style;]
   + Fieldref [android/graphics/Point.x I]
   + Fieldref [android/graphics/Point.y I]
+  + Fieldref [com/dominic/remote/RemoteView.A Z]
+  + Fieldref [com/dominic/remote/RemoteView.B Z]
+  + Fieldref [com/dominic/remote/RemoteView.C F]
+  + Fieldref [com/dominic/remote/RemoteView.D F]
+  + Fieldref [com/dominic/remote/RemoteView.E Landroid/content/BroadcastReceiver;]
   + Fieldref [com/dominic/remote/RemoteView.a Landroid/graphics/Paint;]
   + Fieldref [com/dominic/remote/RemoteView.b Landroid/graphics/Paint;]
   + Fieldref [com/dominic/remote/RemoteView.c Landroid/graphics/Paint;]
   + Fieldref [com/dominic/remote/RemoteView.d Landroid/graphics/Paint;]
-  + Fieldref [com/dominic/remote/RemoteView.e I]
-  + Fieldref [com/dominic/remote/RemoteView.f Landroid/graphics/Bitmap;]
-  + Fieldref [com/dominic/remote/RemoteView.g F]
+  + Fieldref [com/dominic/remote/RemoteView.e Landroid/graphics/Paint;]
+  + Fieldref [com/dominic/remote/RemoteView.f I]
+  + Fieldref [com/dominic/remote/RemoteView.g Landroid/graphics/Bitmap;]
   + Fieldref [com/dominic/remote/RemoteView.h F]
   + Fieldref [com/dominic/remote/RemoteView.i F]
-  + Fieldref [com/dominic/remote/RemoteView.j I]
+  + Fieldref [com/dominic/remote/RemoteView.j F]
   + Fieldref [com/dominic/remote/RemoteView.k I]
   + Fieldref [com/dominic/remote/RemoteView.l I]
-  + Fieldref [com/dominic/remote/RemoteView.m F]
-  + Fieldref [com/dominic/remote/RemoteView.n F]
-  + Fieldref [com/dominic/remote/RemoteView.o F]
-  + Fieldref [com/dominic/remote/RemoteView.p F]
-  + Fieldref [com/dominic/remote/RemoteView.q F]
-  + Fieldref [com/dominic/remote/RemoteView.r F]
+  + Fieldref [com/dominic/remote/RemoteView.m I]
+  + Fieldref [com/dominic/remote/RemoteView.n Ljava/lang/String;]
+  + Fieldref [com/dominic/remote/RemoteView.o Ljava/lang/String;]
+  + Fieldref [com/dominic/remote/RemoteView.p Ljava/lang/String;]
+  + Fieldref [com/dominic/remote/RemoteView.q I]
+  + Fieldref [com/dominic/remote/RemoteView.r I]
   + Fieldref [com/dominic/remote/RemoteView.s I]
-  + Fieldref [com/dominic/remote/RemoteView.t Z]
-  + Fieldref [com/dominic/remote/RemoteView.u Z]
+  + Fieldref [com/dominic/remote/RemoteView.t F]
+  + Fieldref [com/dominic/remote/RemoteView.u F]
   + Fieldref [com/dominic/remote/RemoteView.v F]
   + Fieldref [com/dominic/remote/RemoteView.w F]
+  + Fieldref [com/dominic/remote/RemoteView.x F]
+  + Fieldref [com/dominic/remote/RemoteView.y F]
+  + Fieldref [com/dominic/remote/RemoteView.z I]
   + Methodref [android/app/Activity.getWindowManager ()Landroid/view/WindowManager;]
   + Methodref [android/content/Context.getSystemService (Ljava/lang/String;)Ljava/lang/Object;]
+  + Methodref [android/content/Context.registerReceiver (Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;]
   + Methodref [android/content/Context.sendOrderedBroadcast (Landroid/content/Intent;Ljava/lang/String;)V]
   + Methodref [android/content/Intent.<init> (Ljava/lang/String;Landroid/net/Uri;)V]
+  + Methodref [android/content/Intent.getIntExtra (Ljava/lang/String;I)I]
   + Methodref [android/content/Intent.putExtra (Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;]
+  + Methodref [android/content/IntentFilter.<init> ()V]
+  + Methodref [android/content/IntentFilter.<init> (Ljava/lang/String;)V]
+  + Methodref [android/content/IntentFilter.addAction (Ljava/lang/String;)V]
   + Methodref [android/graphics/Bitmap.createBitmap (IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
   + Methodref [android/graphics/Canvas.drawBitmap (Landroid/graphics/Bitmap;FFLandroid/graphics/Paint;)V]
   + Methodref [android/graphics/Canvas.drawCircle (FFFLandroid/graphics/Paint;)V]
@@ -56061,6 +55868,7 @@ Constant Pool (count = 326):
   + Methodref [android/graphics/Paint.setStrokeJoin (Landroid/graphics/Paint$Join;)V]
   + Methodref [android/graphics/Paint.setStrokeWidth (F)V]
   + Methodref [android/graphics/Paint.setStyle (Landroid/graphics/Paint$Style;)V]
+  + Methodref [android/graphics/Paint.setTextAlign (Landroid/graphics/Paint$Align;)V]
   + Methodref [android/graphics/Paint.setTextSize (F)V]
   + Methodref [android/graphics/Point.<init> ()V]
   + Methodref [android/media/AudioManager.adjustStreamVolume (III)V]
@@ -56076,23 +55884,36 @@ Constant Pool (count = 326):
   + Methodref [com/dominic/remote/RemoteView.a ()V]
   + Methodref [com/dominic/remote/RemoteView.a (I)Ljava/lang/String;]
   + Methodref [com/dominic/remote/RemoteView.a (II)V]
+  + Methodref [com/dominic/remote/RemoteView.b ()V]
   + Methodref [com/dominic/remote/RemoteView.getContext ()Landroid/content/Context;]
   + Methodref [com/dominic/remote/RemoteView.getDirection ()I]
   + Methodref [com/dominic/remote/RemoteView.getDirectionString ()Ljava/lang/String;]
   + Methodref [com/dominic/remote/RemoteView.invalidate ()V]
+  + Methodref [com/dominic/remote/b.<init> (Lcom/dominic/remote/RemoteView;)V]
   + Methodref [java/lang/Math.sqrt (D)D]
+  + Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
   + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
+  + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
   + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
+  + Methodref [java/util/Calendar.get (I)I]
+  + Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
   + InterfaceMethodref [android/view/WindowManager.getDefaultDisplay ()Landroid/view/Display;]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (I)V]
   + NameAndType [<init> (JJIII)V]
   + NameAndType [<init> (Landroid/content/Context;Landroid/util/AttributeSet;)V]
+  + NameAndType [<init> (Lcom/dominic/remote/RemoteView;)V]
   + NameAndType [<init> (Ljava/lang/String;)V]
   + NameAndType [<init> (Ljava/lang/String;Landroid/net/Uri;)V]
+  + NameAndType [A Z]
   + NameAndType [ARGB_8888 Landroid/graphics/Bitmap$Config;]
+  + NameAndType [B Z]
+  + NameAndType [C F]
+  + NameAndType [D F]
+  + NameAndType [E Landroid/content/BroadcastReceiver;]
   + NameAndType [FILL_AND_STROKE Landroid/graphics/Paint$Style;]
+  + NameAndType [RIGHT Landroid/graphics/Paint$Align;]
   + NameAndType [ROUND Landroid/graphics/Paint$Cap;]
   + NameAndType [ROUND Landroid/graphics/Paint$Join;]
   + NameAndType [STROKE Landroid/graphics/Paint$Style;]
@@ -56100,8 +55921,11 @@ Constant Pool (count = 326):
   + NameAndType [a (I)Ljava/lang/String;]
   + NameAndType [a (II)V]
   + NameAndType [a Landroid/graphics/Paint;]
+  + NameAndType [addAction (Ljava/lang/String;)V]
   + NameAndType [adjustStreamVolume (III)V]
+  + NameAndType [append (I)Ljava/lang/StringBuilder;]
   + NameAndType [append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+  + NameAndType [b ()V]
   + NameAndType [b Landroid/graphics/Paint;]
   + NameAndType [c Landroid/graphics/Paint;]
   + NameAndType [createBitmap (IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
@@ -56110,14 +55934,17 @@ Constant Pool (count = 326):
   + NameAndType [drawCircle (FFFLandroid/graphics/Paint;)V]
   + NameAndType [drawRect (FFFFLandroid/graphics/Paint;)V]
   + NameAndType [drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
-  + NameAndType [e I]
-  + NameAndType [f Landroid/graphics/Bitmap;]
-  + NameAndType [g F]
+  + NameAndType [e Landroid/graphics/Paint;]
+  + NameAndType [f I]
+  + NameAndType [g Landroid/graphics/Bitmap;]
+  + NameAndType [get (I)I]
   + NameAndType [getAction ()I]
   + NameAndType [getContext ()Landroid/content/Context;]
   + NameAndType [getDefaultDisplay ()Landroid/view/Display;]
   + NameAndType [getDirection ()I]
   + NameAndType [getDirectionString ()Ljava/lang/String;]
+  + NameAndType [getInstance ()Ljava/util/Calendar;]
+  + NameAndType [getIntExtra (Ljava/lang/String;I)I]
   + NameAndType [getPointerCount ()I]
   + NameAndType [getSize (Landroid/graphics/Point;)V]
   + NameAndType [getSystemService (Ljava/lang/String;)Ljava/lang/Object;]
@@ -56127,17 +55954,18 @@ Constant Pool (count = 326):
   + NameAndType [h F]
   + NameAndType [i F]
   + NameAndType [invalidate ()V]
-  + NameAndType [j I]
+  + NameAndType [j F]
   + NameAndType [k I]
   + NameAndType [l I]
-  + NameAndType [m F]
-  + NameAndType [n F]
-  + NameAndType [o F]
+  + NameAndType [m I]
+  + NameAndType [n Ljava/lang/String;]
+  + NameAndType [o Ljava/lang/String;]
   + NameAndType [onSizeChanged (IIII)V]
-  + NameAndType [p F]
+  + NameAndType [p Ljava/lang/String;]
   + NameAndType [putExtra (Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;]
-  + NameAndType [q F]
-  + NameAndType [r F]
+  + NameAndType [q I]
+  + NameAndType [r I]
+  + NameAndType [registerReceiver (Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;]
   + NameAndType [s I]
   + NameAndType [sendOrderedBroadcast (Landroid/content/Intent;Ljava/lang/String;)V]
   + NameAndType [setAntiAlias (Z)V]
@@ -56146,68 +55974,93 @@ Constant Pool (count = 326):
   + NameAndType [setStrokeJoin (Landroid/graphics/Paint$Join;)V]
   + NameAndType [setStrokeWidth (F)V]
   + NameAndType [setStyle (Landroid/graphics/Paint$Style;)V]
+  + NameAndType [setTextAlign (Landroid/graphics/Paint$Align;)V]
   + NameAndType [setTextSize (F)V]
   + NameAndType [sqrt (D)D]
-  + NameAndType [t Z]
+  + NameAndType [t F]
   + NameAndType [toString ()Ljava/lang/String;]
-  + NameAndType [u Z]
+  + NameAndType [u F]
   + NameAndType [uptimeMillis ()J]
   + NameAndType [v F]
+  + NameAndType [valueOf (I)Ljava/lang/String;]
   + NameAndType [w F]
+  + NameAndType [x F]
   + NameAndType [x I]
+  + NameAndType [y F]
   + NameAndType [y I]
+  + NameAndType [z I]
   + Utf8 [ ]
+  + Utf8 [ %]
   + Utf8 [()I]
   + Utf8 [()J]
   + Utf8 [()Landroid/content/Context;]
   + Utf8 [()Landroid/view/Display;]
   + Utf8 [()Landroid/view/WindowManager;]
   + Utf8 [()Ljava/lang/String;]
+  + Utf8 [()Ljava/util/Calendar;]
   + Utf8 [()V]
   + Utf8 [(D)D]
   + Utf8 [(F)V]
   + Utf8 [(FFFFLandroid/graphics/Paint;)V]
   + Utf8 [(FFFLandroid/graphics/Paint;)V]
   + Utf8 [(I)F]
+  + Utf8 [(I)I]
   + Utf8 [(I)Ljava/lang/String;]
+  + Utf8 [(I)Ljava/lang/StringBuilder;]
   + Utf8 [(I)V]
   + Utf8 [(II)V]
   + Utf8 [(III)V]
   + Utf8 [(IIII)V]
   + Utf8 [(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
   + Utf8 [(JJIII)V]
+  + Utf8 [(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;]
   + Utf8 [(Landroid/content/Context;Landroid/util/AttributeSet;)V]
   + Utf8 [(Landroid/content/Intent;Ljava/lang/String;)V]
   + Utf8 [(Landroid/graphics/Bitmap;FFLandroid/graphics/Paint;)V]
   + Utf8 [(Landroid/graphics/Canvas;)V]
+  + Utf8 [(Landroid/graphics/Paint$Align;)V]
   + Utf8 [(Landroid/graphics/Paint$Cap;)V]
   + Utf8 [(Landroid/graphics/Paint$Join;)V]
   + Utf8 [(Landroid/graphics/Paint$Style;)V]
   + Utf8 [(Landroid/graphics/Point;)V]
   + Utf8 [(Landroid/view/MotionEvent;)Z]
+  + Utf8 [(Lcom/dominic/remote/RemoteView;)V]
+  + Utf8 [(Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
   + Utf8 [(Ljava/lang/String;)Ljava/lang/Object;]
   + Utf8 [(Ljava/lang/String;)Ljava/lang/StringBuilder;]
   + Utf8 [(Ljava/lang/String;)V]
   + Utf8 [(Ljava/lang/String;FFLandroid/graphics/Paint;)V]
+  + Utf8 [(Ljava/lang/String;I)I]
   + Utf8 [(Ljava/lang/String;Landroid/net/Uri;)V]
   + Utf8 [(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;]
   + Utf8 [(Z)V]
+  + Utf8 [:]
   + Utf8 [<init>]
+  + Utf8 [A]
   + Utf8 [ARGB_8888]
   + Utf8 [Action: ]
+  + Utf8 [B]
+  + Utf8 [C]
   + Utf8 [Change Volume]
   + Utf8 [Code]
+  + Utf8 [ConstantValue]
+  + Utf8 [D]
   + Utf8 [Down]
+  + Utf8 [E]
   + Utf8 [F]
   + Utf8 [FILL_AND_STROKE]
   + Utf8 [I]
+  + Utf8 [Landroid/content/BroadcastReceiver;]
   + Utf8 [Landroid/graphics/Bitmap$Config;]
   + Utf8 [Landroid/graphics/Bitmap;]
+  + Utf8 [Landroid/graphics/Paint$Align;]
   + Utf8 [Landroid/graphics/Paint$Cap;]
   + Utf8 [Landroid/graphics/Paint$Join;]
   + Utf8 [Landroid/graphics/Paint$Style;]
   + Utf8 [Landroid/graphics/Paint;]
+  + Utf8 [Ljava/lang/String;]
   + Utf8 [None]
+  + Utf8 [RIGHT]
   + Utf8 [ROUND]
   + Utf8 [STROKE]
   + Utf8 [Same]
@@ -56217,16 +56070,20 @@ Constant Pool (count = 326):
   + Utf8 [Up]
   + Utf8 [Z]
   + Utf8 [a]
+  + Utf8 [addAction]
   + Utf8 [adjustStreamVolume]
+  + Utf8 [android.intent.action.BATTERY_CHANGED]
   + Utf8 [android.intent.action.MEDIA_BUTTON]
   + Utf8 [android.intent.extra.KEY_EVENT]
   + Utf8 [android/app/Activity]
   + Utf8 [android/content/Context]
   + Utf8 [android/content/Intent]
+  + Utf8 [android/content/IntentFilter]
   + Utf8 [android/graphics/Bitmap]
   + Utf8 [android/graphics/Bitmap$Config]
   + Utf8 [android/graphics/Canvas]
   + Utf8 [android/graphics/Paint]
+  + Utf8 [android/graphics/Paint$Align]
   + Utf8 [android/graphics/Paint$Cap]
   + Utf8 [android/graphics/Paint$Join]
   + Utf8 [android/graphics/Paint$Style]
@@ -56242,7 +56099,12 @@ Constant Pool (count = 326):
   + Utf8 [audio]
   + Utf8 [b]
   + Utf8 [c]
+  + Utf8 [com.android.music.metachanged]
+  + Utf8 [com.android.music.playbackcomplete]
+  + Utf8 [com.android.music.playstatechanged]
+  + Utf8 [com.android.music.queuechanged]
   + Utf8 [com/dominic/remote/RemoteView]
+  + Utf8 [com/dominic/remote/b]
   + Utf8 [createBitmap]
   + Utf8 [d]
   + Utf8 [drawBitmap]
@@ -56252,11 +56114,14 @@ Constant Pool (count = 326):
   + Utf8 [e]
   + Utf8 [f]
   + Utf8 [g]
+  + Utf8 [get]
   + Utf8 [getAction]
   + Utf8 [getContext]
   + Utf8 [getDefaultDisplay]
   + Utf8 [getDirection]
   + Utf8 [getDirectionString]
+  + Utf8 [getInstance]
+  + Utf8 [getIntExtra]
   + Utf8 [getPointerCount]
   + Utf8 [getSize]
   + Utf8 [getSystemService]
@@ -56270,8 +56135,10 @@ Constant Pool (count = 326):
   + Utf8 [java/lang/Math]
   + Utf8 [java/lang/String]
   + Utf8 [java/lang/StringBuilder]
+  + Utf8 [java/util/Calendar]
   + Utf8 [k]
   + Utf8 [l]
+  + Utf8 [level]
   + Utf8 [m]
   + Utf8 [n]
   + Utf8 [o]
@@ -56282,6 +56149,7 @@ Constant Pool (count = 326):
   + Utf8 [putExtra]
   + Utf8 [q]
   + Utf8 [r]
+  + Utf8 [registerReceiver]
   + Utf8 [s]
   + Utf8 [sendOrderedBroadcast]
   + Utf8 [setAntiAlias]
@@ -56290,6 +56158,7 @@ Constant Pool (count = 326):
   + Utf8 [setStrokeJoin]
   + Utf8 [setStrokeWidth]
   + Utf8 [setStyle]
+  + Utf8 [setTextAlign]
   + Utf8 [setTextSize]
   + Utf8 [sqrt]
   + Utf8 [t]
@@ -56297,11 +56166,13 @@ Constant Pool (count = 326):
   + Utf8 [u]
   + Utf8 [uptimeMillis]
   + Utf8 [v]
+  + Utf8 [valueOf]
   + Utf8 [w]
   + Utf8 [x]
   + Utf8 [y]
+  + Utf8 [z]
 
-Fields (count = 23):
+Fields (count = 31):
   + Field:        a Landroid/graphics/Paint;
     Access flags: 0x2
       = private android.graphics.Paint a
@@ -56314,286 +56185,406 @@ Fields (count = 23):
   + Field:        d Landroid/graphics/Paint;
     Access flags: 0x2
       = private android.graphics.Paint d
-  + Field:        e I
+  + Field:        e Landroid/graphics/Paint;
     Access flags: 0x2
-      = private int e
-  + Field:        f Landroid/graphics/Bitmap;
+      = private android.graphics.Paint e
+  + Field:        f I
+    Access flags: 0x12
+      = private final int f
+    Class member attributes (count = 1):
+    + Constant value attribute:
+    + Integer [-1]
+  + Field:        g Landroid/graphics/Bitmap;
     Access flags: 0x2
-      = private android.graphics.Bitmap f
-  + Field:        g F
-    Access flags: 0x2
-      = private float g
+      = private android.graphics.Bitmap g
   + Field:        h F
     Access flags: 0x2
       = private float h
   + Field:        i F
     Access flags: 0x2
       = private float i
-  + Field:        j I
+  + Field:        j F
     Access flags: 0x2
-      = private int j
+      = private float j
   + Field:        k I
     Access flags: 0x2
       = private int k
   + Field:        l I
     Access flags: 0x2
       = private int l
-  + Field:        m F
+  + Field:        m I
     Access flags: 0x2
-      = private float m
-  + Field:        n F
+      = private int m
+  + Field:        n Ljava/lang/String;
     Access flags: 0x2
-      = private float n
-  + Field:        o F
+      = private java.lang.String n
+  + Field:        o Ljava/lang/String;
     Access flags: 0x2
-      = private float o
-  + Field:        p F
+      = private java.lang.String o
+  + Field:        p Ljava/lang/String;
     Access flags: 0x2
-      = private float p
-  + Field:        q F
+      = private java.lang.String p
+  + Field:        q I
     Access flags: 0x2
-      = private float q
-  + Field:        r F
+      = private int q
+  + Field:        r I
     Access flags: 0x2
-      = private float r
+      = private int r
   + Field:        s I
+    Access flags: 0x12
+      = private final int s
+    Class member attributes (count = 1):
+    + Constant value attribute:
+    + Integer [100]
+  + Field:        t F
     Access flags: 0x2
-      = private int s
-  + Field:        t Z
+      = private float t
+  + Field:        u F
     Access flags: 0x2
-      = private boolean t
-  + Field:        u Z
-    Access flags: 0x2
-      = private boolean u
+      = private float u
   + Field:        v F
     Access flags: 0x2
       = private float v
   + Field:        w F
     Access flags: 0x2
       = private float w
+  + Field:        x F
+    Access flags: 0x2
+      = private float x
+  + Field:        y F
+    Access flags: 0x2
+      = private float y
+  + Field:        z I
+    Access flags: 0x2
+      = private int z
+  + Field:        A Z
+    Access flags: 0x2
+      = private boolean A
+  + Field:        B Z
+    Access flags: 0x2
+      = private boolean B
+  + Field:        C F
+    Access flags: 0x2
+      = private float C
+  + Field:        D F
+    Access flags: 0x2
+      = private float D
+  + Field:        E Landroid/content/BroadcastReceiver;
+    Access flags: 0x2
+      = private android.content.BroadcastReceiver E
 
-Methods (count = 9):
+Methods (count = 13):
   - Method:       <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
     Access flags: 0x1
       = public RemoteView(android.content.Context,android.util.AttributeSet)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 56, locals = 3, stack = 3):
+    + Code attribute instructions (code length = 85, locals = 3, stack = 4):
       [0] aload_0 v0
       [1] aload_1 v1
       [2] aload_2 v2
-      [3] invokespecial #97
+      [3] invokespecial #128
         + Methodref [android/view/View.<init> (Landroid/content/Context;Landroid/util/AttributeSet;)V]
       [6] aload_0 v0
       [7] iconst_m1
-      [8] putfield #50
-        + Fieldref [com/dominic/remote/RemoteView.e I]
+      [8] putfield #73
+        + Fieldref [com/dominic/remote/RemoteView.f I]
       [11] aload_0 v0
       [12] fconst_0
-      [13] putfield #52
-        + Fieldref [com/dominic/remote/RemoteView.g F]
+      [13] putfield #75
+        + Fieldref [com/dominic/remote/RemoteView.h F]
       [16] aload_0 v0
       [17] fconst_0
-      [18] putfield #53
-        + Fieldref [com/dominic/remote/RemoteView.h F]
+      [18] putfield #76
+        + Fieldref [com/dominic/remote/RemoteView.i F]
       [21] aload_0 v0
       [22] fconst_0
-      [23] putfield #54
-        + Fieldref [com/dominic/remote/RemoteView.i F]
+      [23] putfield #77
+        + Fieldref [com/dominic/remote/RemoteView.j F]
       [26] aload_0 v0
-      [27] iconst_0
-      [28] putfield #64
-        + Fieldref [com/dominic/remote/RemoteView.s I]
+      [27] iconst_m1
+      [28] putfield #84
+        + Fieldref [com/dominic/remote/RemoteView.q I]
       [31] aload_0 v0
-      [32] iconst_0
-      [33] putfield #65
-        + Fieldref [com/dominic/remote/RemoteView.t Z]
-      [36] aload_0 v0
-      [37] iconst_0
-      [38] putfield #66
-        + Fieldref [com/dominic/remote/RemoteView.u Z]
-      [41] aload_0 v0
-      [42] fconst_0
-      [43] putfield #67
-        + Fieldref [com/dominic/remote/RemoteView.v F]
-      [46] aload_0 v0
-      [47] fconst_0
-      [48] putfield #68
-        + Fieldref [com/dominic/remote/RemoteView.w F]
-      [51] aload_0 v0
-      [52] invokespecial #99
+      [32] bipush 100
+      [34] putfield #85
+        + Fieldref [com/dominic/remote/RemoteView.r I]
+      [37] aload_0 v0
+      [38] bipush 100
+      [40] putfield #86
+        + Fieldref [com/dominic/remote/RemoteView.s I]
+      [43] aload_0 v0
+      [44] iconst_0
+      [45] putfield #93
+        + Fieldref [com/dominic/remote/RemoteView.z I]
+      [48] aload_0 v0
+      [49] iconst_0
+      [50] putfield #63
+        + Fieldref [com/dominic/remote/RemoteView.A Z]
+      [53] aload_0 v0
+      [54] iconst_0
+      [55] putfield #64
+        + Fieldref [com/dominic/remote/RemoteView.B Z]
+      [58] aload_0 v0
+      [59] fconst_0
+      [60] putfield #65
+        + Fieldref [com/dominic/remote/RemoteView.C F]
+      [63] aload_0 v0
+      [64] fconst_0
+      [65] putfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
+      [68] aload_0 v0
+      [69] new #50
+        + Class [com/dominic/remote/b]
+      [72] dup
+      [73] aload_0 v0
+      [74] invokespecial #138
+        + Methodref [com/dominic/remote/b.<init> (Lcom/dominic/remote/RemoteView;)V]
+      [77] putfield #67
+        + Fieldref [com/dominic/remote/RemoteView.E Landroid/content/BroadcastReceiver;]
+      [80] aload_0 v0
+      [81] invokespecial #130
         + Methodref [com/dominic/remote/RemoteView.a ()V]
-      [55] return
+      [84] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       a()V
     Access flags: 0x2
       = private void a()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 224, locals = 3, stack = 4):
+    + Code attribute instructions (code length = 313, locals = 4, stack = 4):
       [0] aload_0 v0
-      [1] new #23
+      [1] new #36
         + Class [android/graphics/Paint]
       [4] dup
-      [5] invokespecial #79
+      [5] invokespecial #109
         + Methodref [android/graphics/Paint.<init> ()V]
-      [8] putfield #46
+      [8] putfield #68
         + Fieldref [com/dominic/remote/RemoteView.a Landroid/graphics/Paint;]
       [11] aload_0 v0
-      [12] getfield #46
+      [12] getfield #68
         + Fieldref [com/dominic/remote/RemoteView.a Landroid/graphics/Paint;]
-      [15] aload_0 v0
-      [16] getfield #50
-        + Fieldref [com/dominic/remote/RemoteView.e I]
-      [19] invokevirtual #82
+      [15] iconst_m1
+      [16] invokevirtual #112
         + Methodref [android/graphics/Paint.setColor (I)V]
-      [22] aload_0 v0
-      [23] getfield #46
+      [19] aload_0 v0
+      [20] getfield #68
         + Fieldref [com/dominic/remote/RemoteView.a Landroid/graphics/Paint;]
-      [26] iconst_1
-      [27] invokevirtual #81
+      [23] iconst_1
+      [24] invokevirtual #111
         + Methodref [android/graphics/Paint.setAntiAlias (Z)V]
-      [30] aload_0 v0
-      [31] getfield #46
+      [27] aload_0 v0
+      [28] getfield #68
         + Fieldref [com/dominic/remote/RemoteView.a Landroid/graphics/Paint;]
-      [34] ldc #2
+      [31] ldc #4
         + Float [10.0]
-      [36] invokevirtual #85
+      [33] invokevirtual #115
         + Methodref [android/graphics/Paint.setStrokeWidth (F)V]
-      [39] aload_0 v0
-      [40] getfield #46
+      [36] aload_0 v0
+      [37] getfield #68
         + Fieldref [com/dominic/remote/RemoteView.a Landroid/graphics/Paint;]
-      [43] getstatic #43
+      [40] getstatic #60
         + Fieldref [android/graphics/Paint$Style.STROKE Landroid/graphics/Paint$Style;]
-      [46] invokevirtual #86
+      [43] invokevirtual #116
         + Methodref [android/graphics/Paint.setStyle (Landroid/graphics/Paint$Style;)V]
-      [49] aload_0 v0
-      [50] getfield #46
+      [46] aload_0 v0
+      [47] getfield #68
         + Fieldref [com/dominic/remote/RemoteView.a Landroid/graphics/Paint;]
-      [53] getstatic #41
+      [50] getstatic #58
         + Fieldref [android/graphics/Paint$Join.ROUND Landroid/graphics/Paint$Join;]
-      [56] invokevirtual #84
+      [53] invokevirtual #114
         + Methodref [android/graphics/Paint.setStrokeJoin (Landroid/graphics/Paint$Join;)V]
-      [59] aload_0 v0
-      [60] getfield #46
+      [56] aload_0 v0
+      [57] getfield #68
         + Fieldref [com/dominic/remote/RemoteView.a Landroid/graphics/Paint;]
-      [63] getstatic #40
+      [60] getstatic #57
         + Fieldref [android/graphics/Paint$Cap.ROUND Landroid/graphics/Paint$Cap;]
-      [66] invokevirtual #83
+      [63] invokevirtual #113
         + Methodref [android/graphics/Paint.setStrokeCap (Landroid/graphics/Paint$Cap;)V]
-      [69] aload_0 v0
-      [70] new #23
+      [66] aload_0 v0
+      [67] new #36
         + Class [android/graphics/Paint]
-      [73] dup
-      [74] invokespecial #79
+      [70] dup
+      [71] invokespecial #109
         + Methodref [android/graphics/Paint.<init> ()V]
-      [77] putfield #49
+      [74] putfield #71
         + Fieldref [com/dominic/remote/RemoteView.d Landroid/graphics/Paint;]
-      [80] aload_0 v0
-      [81] getfield #49
+      [77] aload_0 v0
+      [78] getfield #71
         + Fieldref [com/dominic/remote/RemoteView.d Landroid/graphics/Paint;]
-      [84] ldc #1
+      [81] ldc #1
         + Integer [-48128]
-      [86] invokevirtual #82
+      [83] invokevirtual #112
         + Methodref [android/graphics/Paint.setColor (I)V]
-      [89] aload_0 v0
-      [90] getfield #49
+      [86] aload_0 v0
+      [87] getfield #71
         + Fieldref [com/dominic/remote/RemoteView.d Landroid/graphics/Paint;]
-      [93] iconst_1
-      [94] invokevirtual #81
+      [90] iconst_1
+      [91] invokevirtual #111
         + Methodref [android/graphics/Paint.setAntiAlias (Z)V]
-      [97] aload_0 v0
-      [98] getfield #49
+      [94] aload_0 v0
+      [95] getfield #71
         + Fieldref [com/dominic/remote/RemoteView.d Landroid/graphics/Paint;]
-      [101] ldc #2
+      [98] ldc #4
         + Float [10.0]
-      [103] invokevirtual #85
+      [100] invokevirtual #115
         + Methodref [android/graphics/Paint.setStrokeWidth (F)V]
-      [106] aload_0 v0
-      [107] getfield #49
+      [103] aload_0 v0
+      [104] getfield #71
         + Fieldref [com/dominic/remote/RemoteView.d Landroid/graphics/Paint;]
-      [110] getstatic #42
+      [107] getstatic #59
         + Fieldref [android/graphics/Paint$Style.FILL_AND_STROKE Landroid/graphics/Paint$Style;]
-      [113] invokevirtual #86
+      [110] invokevirtual #116
         + Methodref [android/graphics/Paint.setStyle (Landroid/graphics/Paint$Style;)V]
-      [116] aload_0 v0
-      [117] new #23
+      [113] aload_0 v0
+      [114] new #36
         + Class [android/graphics/Paint]
-      [120] dup
-      [121] invokespecial #79
+      [117] dup
+      [118] invokespecial #109
         + Methodref [android/graphics/Paint.<init> ()V]
-      [124] putfield #48
+      [121] putfield #70
         + Fieldref [com/dominic/remote/RemoteView.c Landroid/graphics/Paint;]
-      [127] aload_0 v0
-      [128] getfield #48
+      [124] aload_0 v0
+      [125] getfield #70
         + Fieldref [com/dominic/remote/RemoteView.c Landroid/graphics/Paint;]
-      [131] aload_0 v0
-      [132] getfield #50
-        + Fieldref [com/dominic/remote/RemoteView.e I]
-      [135] invokevirtual #82
+      [128] iconst_m1
+      [129] invokevirtual #112
         + Methodref [android/graphics/Paint.setColor (I)V]
-      [138] aload_0 v0
-      [139] getfield #48
+      [132] aload_0 v0
+      [133] getfield #70
         + Fieldref [com/dominic/remote/RemoteView.c Landroid/graphics/Paint;]
-      [142] iconst_1
-      [143] invokevirtual #81
+      [136] iconst_1
+      [137] invokevirtual #111
         + Methodref [android/graphics/Paint.setAntiAlias (Z)V]
-      [146] aload_0 v0
-      [147] getfield #48
+      [140] aload_0 v0
+      [141] getfield #70
         + Fieldref [com/dominic/remote/RemoteView.c Landroid/graphics/Paint;]
-      [150] ldc #4
+      [144] ldc #5
         + Float [48.0]
-      [152] invokevirtual #87
+      [146] invokevirtual #118
         + Methodref [android/graphics/Paint.setTextSize (F)V]
-      [155] aload_0 v0
-      [156] new #23
+      [149] aload_0 v0
+      [150] new #36
         + Class [android/graphics/Paint]
-      [159] dup
-      [160] iconst_4
-      [161] invokespecial #80
+      [153] dup
+      [154] invokespecial #109
+        + Methodref [android/graphics/Paint.<init> ()V]
+      [157] putfield #72
+        + Fieldref [com/dominic/remote/RemoteView.e Landroid/graphics/Paint;]
+      [160] aload_0 v0
+      [161] getfield #72
+        + Fieldref [com/dominic/remote/RemoteView.e Landroid/graphics/Paint;]
+      [164] iconst_m1
+      [165] invokevirtual #112
+        + Methodref [android/graphics/Paint.setColor (I)V]
+      [168] aload_0 v0
+      [169] getfield #72
+        + Fieldref [com/dominic/remote/RemoteView.e Landroid/graphics/Paint;]
+      [172] iconst_1
+      [173] invokevirtual #111
+        + Methodref [android/graphics/Paint.setAntiAlias (Z)V]
+      [176] aload_0 v0
+      [177] getfield #72
+        + Fieldref [com/dominic/remote/RemoteView.e Landroid/graphics/Paint;]
+      [180] ldc #5
+        + Float [48.0]
+      [182] invokevirtual #118
+        + Methodref [android/graphics/Paint.setTextSize (F)V]
+      [185] aload_0 v0
+      [186] getfield #72
+        + Fieldref [com/dominic/remote/RemoteView.e Landroid/graphics/Paint;]
+      [189] getstatic #56
+        + Fieldref [android/graphics/Paint$Align.RIGHT Landroid/graphics/Paint$Align;]
+      [192] invokevirtual #117
+        + Methodref [android/graphics/Paint.setTextAlign (Landroid/graphics/Paint$Align;)V]
+      [195] aload_0 v0
+      [196] new #36
+        + Class [android/graphics/Paint]
+      [199] dup
+      [200] iconst_4
+      [201] invokespecial #110
         + Methodref [android/graphics/Paint.<init> (I)V]
-      [164] putfield #47
+      [204] putfield #69
         + Fieldref [com/dominic/remote/RemoteView.b Landroid/graphics/Paint;]
-      [167] aload_0 v0
-      [168] invokevirtual #102
+      [207] aload_0 v0
+      [208] invokevirtual #134
         + Methodref [com/dominic/remote/RemoteView.getContext ()Landroid/content/Context;]
-      [171] checkcast #17
+      [211] checkcast #29
         + Class [android/app/Activity]
-      [174] invokevirtual #69
+      [214] invokevirtual #94
         + Methodref [android/app/Activity.getWindowManager ()Landroid/view/WindowManager;]
-      [177] invokeinterface #110
+      [217] invokeinterface #147
         + InterfaceMethodref [android/view/WindowManager.getDefaultDisplay ()Landroid/view/Display;]
-      [182] astore_1 v1
-      [183] new #27
+      [222] astore_1 v1
+      [223] new #41
         + Class [android/graphics/Point]
-      [186] dup
-      [187] invokespecial #88
+      [226] dup
+      [227] invokespecial #119
         + Methodref [android/graphics/Point.<init> ()V]
-      [190] astore_2 v2
-      [191] aload_1 v1
-      [192] aload_2 v2
-      [193] invokevirtual #91
+      [230] astore_2 v2
+      [231] aload_1 v1
+      [232] aload_2 v2
+      [233] invokevirtual #122
         + Methodref [android/view/Display.getSize (Landroid/graphics/Point;)V]
-      [196] aload_0 v0
-      [197] aload_2 v2
-      [198] getfield #44
+      [236] aload_0 v0
+      [237] aload_2 v2
+      [238] getfield #61
         + Fieldref [android/graphics/Point.x I]
-      [201] putfield #55
-        + Fieldref [com/dominic/remote/RemoteView.j I]
-      [204] aload_0 v0
-      [205] aload_2 v2
-      [206] getfield #45
+      [241] putfield #78
+        + Fieldref [com/dominic/remote/RemoteView.k I]
+      [244] aload_0 v0
+      [245] aload_2 v2
+      [246] getfield #62
         + Fieldref [android/graphics/Point.y I]
-      [209] putfield #56
-        + Fieldref [com/dominic/remote/RemoteView.k I]
-      [212] aload_0 v0
-      [213] aload_0 v0
-      [214] getfield #56
-        + Fieldref [com/dominic/remote/RemoteView.k I]
-      [217] bipush 20
-      [219] idiv
-      [220] putfield #57
+      [249] putfield #79
         + Fieldref [com/dominic/remote/RemoteView.l I]
-      [223] return
+      [252] aload_0 v0
+      [253] aload_0 v0
+      [254] getfield #79
+        + Fieldref [com/dominic/remote/RemoteView.l I]
+      [257] bipush 20
+      [259] idiv
+      [260] putfield #80
+        + Fieldref [com/dominic/remote/RemoteView.m I]
+      [263] new #32
+        + Class [android/content/IntentFilter]
+      [266] dup
+      [267] invokespecial #101
+        + Methodref [android/content/IntentFilter.<init> ()V]
+      [270] astore_3 v3
+      [271] aload_3 v3
+      [272] ldc #24
+        + String [com.android.music.metachanged]
+      [274] invokevirtual #103
+        + Methodref [android/content/IntentFilter.addAction (Ljava/lang/String;)V]
+      [277] aload_3 v3
+      [278] ldc #26
+        + String [com.android.music.playstatechanged]
+      [280] invokevirtual #103
+        + Methodref [android/content/IntentFilter.addAction (Ljava/lang/String;)V]
+      [283] aload_3 v3
+      [284] ldc #25
+        + String [com.android.music.playbackcomplete]
+      [286] invokevirtual #103
+        + Methodref [android/content/IntentFilter.addAction (Ljava/lang/String;)V]
+      [289] aload_3 v3
+      [290] ldc #27
+        + String [com.android.music.queuechanged]
+      [292] invokevirtual #103
+        + Methodref [android/content/IntentFilter.addAction (Ljava/lang/String;)V]
+      [295] aload_0 v0
+      [296] invokevirtual #134
+        + Methodref [com/dominic/remote/RemoteView.getContext ()Landroid/content/Context;]
+      [299] aload_0 v0
+      [300] getfield #67
+        + Fieldref [com/dominic/remote/RemoteView.E Landroid/content/BroadcastReceiver;]
+      [303] aload_3 v3
+      [304] invokevirtual #96
+        + Methodref [android/content/Context.registerReceiver (Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;]
+      [307] pop
+      [308] aload_0 v0
+      [309] invokespecial #133
+        + Methodref [com/dominic/remote/RemoteView.b ()V]
+      [312] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       onSizeChanged(IIII)V
@@ -56606,17 +56597,17 @@ Methods (count = 9):
       [2] iload_2 v2
       [3] iload_3 v3
       [4] iload v4
-      [6] invokespecial #98
+      [6] invokespecial #129
         + Methodref [android/view/View.onSizeChanged (IIII)V]
       [9] aload_0 v0
       [10] iload_1 v1
       [11] iload_2 v2
-      [12] getstatic #39
+      [12] getstatic #55
         + Fieldref [android/graphics/Bitmap$Config.ARGB_8888 Landroid/graphics/Bitmap$Config;]
-      [15] invokestatic #74
+      [15] invokestatic #104
         + Methodref [android/graphics/Bitmap.createBitmap (IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;]
-      [18] putfield #51
-        + Fieldref [com/dominic/remote/RemoteView.f Landroid/graphics/Bitmap;]
+      [18] putfield #74
+        + Fieldref [com/dominic/remote/RemoteView.g Landroid/graphics/Bitmap;]
       [21] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
@@ -56624,120 +56615,256 @@ Methods (count = 9):
     Access flags: 0x4
       = protected void onDraw(android.graphics.Canvas)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 115, locals = 2, stack = 6):
-      [0] aload_1 v1
-      [1] aload_0 v0
-      [2] getfield #51
-        + Fieldref [com/dominic/remote/RemoteView.f Landroid/graphics/Bitmap;]
-      [5] fconst_0
-      [6] fconst_0
-      [7] aload_0 v0
-      [8] getfield #47
+    + Code attribute instructions (code length = 293, locals = 3, stack = 6):
+      [0] aload_0 v0
+      [1] dup
+      [2] getfield #85
+        + Fieldref [com/dominic/remote/RemoteView.r I]
+      [5] iconst_1
+      [6] isub
+      [7] putfield #85
+        + Fieldref [com/dominic/remote/RemoteView.r I]
+      [10] aload_0 v0
+      [11] getfield #85
+        + Fieldref [com/dominic/remote/RemoteView.r I]
+      [14] ifge +13 (target=27)
+      [17] aload_0 v0
+      [18] invokespecial #133
+        + Methodref [com/dominic/remote/RemoteView.b ()V]
+      [21] aload_0 v0
+      [22] bipush 100
+      [24] putfield #85
+        + Fieldref [com/dominic/remote/RemoteView.r I]
+      [27] aload_1 v1
+      [28] aload_0 v0
+      [29] getfield #74
+        + Fieldref [com/dominic/remote/RemoteView.g Landroid/graphics/Bitmap;]
+      [32] fconst_0
+      [33] fconst_0
+      [34] aload_0 v0
+      [35] getfield #69
         + Fieldref [com/dominic/remote/RemoteView.b Landroid/graphics/Paint;]
-      [11] invokevirtual #75
+      [38] invokevirtual #105
         + Methodref [android/graphics/Canvas.drawBitmap (Landroid/graphics/Bitmap;FFLandroid/graphics/Paint;)V]
-      [14] aload_1 v1
-      [15] fconst_0
-      [16] aload_0 v0
-      [17] getfield #68
-        + Fieldref [com/dominic/remote/RemoteView.w F]
-      [20] aload_0 v0
-      [21] getfield #57
-        + Fieldref [com/dominic/remote/RemoteView.l I]
-      [24] i2f
-      [25] fsub
-      [26] aload_0 v0
-      [27] getfield #55
-        + Fieldref [com/dominic/remote/RemoteView.j I]
-      [30] i2f
-      [31] aload_0 v0
-      [32] getfield #68
-        + Fieldref [com/dominic/remote/RemoteView.w F]
-      [35] aload_0 v0
-      [36] getfield #57
-        + Fieldref [com/dominic/remote/RemoteView.l I]
-      [39] i2f
-      [40] fadd
       [41] aload_0 v0
-      [42] getfield #49
+      [42] getfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
+      [45] fconst_0
+      [46] fcmpl
+      [47] ifeq +37 (target=84)
+      [50] aload_1 v1
+      [51] fconst_0
+      [52] aload_0 v0
+      [53] getfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
+      [56] aload_0 v0
+      [57] getfield #80
+        + Fieldref [com/dominic/remote/RemoteView.m I]
+      [60] i2f
+      [61] fsub
+      [62] aload_0 v0
+      [63] getfield #78
+        + Fieldref [com/dominic/remote/RemoteView.k I]
+      [66] i2f
+      [67] aload_0 v0
+      [68] getfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
+      [71] aload_0 v0
+      [72] getfield #80
+        + Fieldref [com/dominic/remote/RemoteView.m I]
+      [75] i2f
+      [76] fadd
+      [77] aload_0 v0
+      [78] getfield #71
         + Fieldref [com/dominic/remote/RemoteView.d Landroid/graphics/Paint;]
-      [45] invokevirtual #77
+      [81] invokevirtual #107
         + Methodref [android/graphics/Canvas.drawRect (FFFFLandroid/graphics/Paint;)V]
-      [48] aload_1 v1
-      [49] aload_0 v0
-      [50] getfield #52
-        + Fieldref [com/dominic/remote/RemoteView.g F]
-      [53] aload_0 v0
-      [54] getfield #53
+      [84] aload_1 v1
+      [85] aload_0 v0
+      [86] getfield #75
         + Fieldref [com/dominic/remote/RemoteView.h F]
-      [57] aload_0 v0
-      [58] getfield #54
+      [89] aload_0 v0
+      [90] getfield #76
         + Fieldref [com/dominic/remote/RemoteView.i F]
-      [61] aload_0 v0
-      [62] getfield #46
+      [93] aload_0 v0
+      [94] getfield #77
+        + Fieldref [com/dominic/remote/RemoteView.j F]
+      [97] aload_0 v0
+      [98] getfield #68
         + Fieldref [com/dominic/remote/RemoteView.a Landroid/graphics/Paint;]
-      [65] invokevirtual #76
+      [101] invokevirtual #106
         + Methodref [android/graphics/Canvas.drawCircle (FFFLandroid/graphics/Paint;)V]
-      [68] aload_1 v1
-      [69] new #38
-        + Class [java/lang/StringBuilder]
-      [72] dup
-      [73] ldc #6
-        + String [Action: ]
-      [75] invokespecial #107
-        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
-      [78] aload_0 v0
-      [79] aload_0 v0
-      [80] getfield #64
-        + Fieldref [com/dominic/remote/RemoteView.s I]
-      [83] invokespecial #100
-        + Methodref [com/dominic/remote/RemoteView.a (I)Ljava/lang/String;]
-      [86] invokevirtual #108
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [89] ldc #5
-        + String [ ]
-      [91] invokevirtual #108
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [94] aload_0 v0
-      [95] invokespecial #104
-        + Methodref [com/dominic/remote/RemoteView.getDirectionString ()Ljava/lang/String;]
-      [98] invokevirtual #108
-        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
-      [101] invokevirtual #109
-        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
-      [104] fconst_0
-      [105] ldc #3
-        + Float [35.0]
-      [107] aload_0 v0
-      [108] getfield #48
+      [104] aload_1 v1
+      [105] aload_0 v0
+      [106] getfield #81
+        + Fieldref [com/dominic/remote/RemoteView.n Ljava/lang/String;]
+      [109] fconst_0
+      [110] ldc #5
+        + Float [48.0]
+      [112] aload_0 v0
+      [113] getfield #70
         + Fieldref [com/dominic/remote/RemoteView.c Landroid/graphics/Paint;]
-      [111] invokevirtual #78
+      [116] invokevirtual #108
         + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
-      [114] return
+      [119] aload_1 v1
+      [120] aload_0 v0
+      [121] getfield #82
+        + Fieldref [com/dominic/remote/RemoteView.o Ljava/lang/String;]
+      [124] fconst_0
+      [125] ldc #6
+        + Float [96.0]
+      [127] aload_0 v0
+      [128] getfield #70
+        + Fieldref [com/dominic/remote/RemoteView.c Landroid/graphics/Paint;]
+      [131] invokevirtual #108
+        + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
+      [134] aload_1 v1
+      [135] aload_0 v0
+      [136] getfield #83
+        + Fieldref [com/dominic/remote/RemoteView.p Ljava/lang/String;]
+      [139] fconst_0
+      [140] ldc #7
+        + Float [144.0]
+      [142] aload_0 v0
+      [143] getfield #70
+        + Fieldref [com/dominic/remote/RemoteView.c Landroid/graphics/Paint;]
+      [146] invokevirtual #108
+        + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
+      [149] aload_0 v0
+      [150] getfield #93
+        + Fieldref [com/dominic/remote/RemoteView.z I]
+      [153] iconst_1
+      [154] ificmple +49 (target=203)
+      [157] aload_1 v1
+      [158] new #53
+        + Class [java/lang/StringBuilder]
+      [161] dup
+      [162] ldc #12
+        + String [Action: ]
+      [164] invokespecial #141
+        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
+      [167] aload_0 v0
+      [168] aload_0 v0
+      [169] getfield #93
+        + Fieldref [com/dominic/remote/RemoteView.z I]
+      [172] invokespecial #131
+        + Methodref [com/dominic/remote/RemoteView.a (I)Ljava/lang/String;]
+      [175] invokevirtual #143
+        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [178] ldc #9
+        + String [ ]
+      [180] invokevirtual #143
+        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [183] aload_0 v0
+      [184] invokespecial #136
+        + Methodref [com/dominic/remote/RemoteView.getDirectionString ()Ljava/lang/String;]
+      [187] invokevirtual #143
+        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [190] invokevirtual #144
+        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
+      [193] fconst_0
+      [194] ldc #8
+        + Float [192.0]
+      [196] aload_0 v0
+      [197] getfield #70
+        + Fieldref [com/dominic/remote/RemoteView.c Landroid/graphics/Paint;]
+      [200] invokevirtual #108
+        + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
+      [203] invokestatic #146
+        + Methodref [java/util/Calendar.getInstance ()Ljava/util/Calendar;]
+      [206] astore_2 v2
+      [207] aload_1 v1
+      [208] new #53
+        + Class [java/lang/StringBuilder]
+      [211] dup
+      [212] aload_0 v0
+      [213] getfield #84
+        + Fieldref [com/dominic/remote/RemoteView.q I]
+      [216] invokestatic #140
+        + Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
+      [219] invokespecial #141
+        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
+      [222] ldc #10
+        + String [ %]
+      [224] invokevirtual #143
+        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [227] invokevirtual #144
+        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
+      [230] aload_0 v0
+      [231] getfield #78
+        + Fieldref [com/dominic/remote/RemoteView.k I]
+      [234] i2f
+      [235] ldc #6
+        + Float [96.0]
+      [237] aload_0 v0
+      [238] getfield #72
+        + Fieldref [com/dominic/remote/RemoteView.e Landroid/graphics/Paint;]
+      [241] invokevirtual #108
+        + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
+      [244] aload_1 v1
+      [245] new #53
+        + Class [java/lang/StringBuilder]
+      [248] dup
+      [249] aload_2 v2
+      [250] bipush 11
+      [252] invokevirtual #145
+        + Methodref [java/util/Calendar.get (I)I]
+      [255] invokestatic #140
+        + Methodref [java/lang/String.valueOf (I)Ljava/lang/String;]
+      [258] invokespecial #141
+        + Methodref [java/lang/StringBuilder.<init> (Ljava/lang/String;)V]
+      [261] ldc #11
+        + String [:]
+      [263] invokevirtual #143
+        + Methodref [java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;]
+      [266] aload_2 v2
+      [267] bipush 12
+      [269] invokevirtual #145
+        + Methodref [java/util/Calendar.get (I)I]
+      [272] invokevirtual #142
+        + Methodref [java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;]
+      [275] invokevirtual #144
+        + Methodref [java/lang/StringBuilder.toString ()Ljava/lang/String;]
+      [278] aload_0 v0
+      [279] getfield #78
+        + Fieldref [com/dominic/remote/RemoteView.k I]
+      [282] i2f
+      [283] ldc #5
+        + Float [48.0]
+      [285] aload_0 v0
+      [286] getfield #72
+        + Fieldref [com/dominic/remote/RemoteView.e Landroid/graphics/Paint;]
+      [289] invokevirtual #108
+        + Methodref [android/graphics/Canvas.drawText (Ljava/lang/String;FFLandroid/graphics/Paint;)V]
+      [292] return
       Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
+      Code attribute attributes (attribute count = 1):
+      + Stack map table attribute (count = 3):
+        - [27] Var: ..., Stack: (empty)
+        - [84] Var: ..., Stack: (empty)
+        - [203] Var: ..., Stack: (empty)
   + Method:       onTouchEvent(Landroid/view/MotionEvent;)Z
     Access flags: 0x1
       = public boolean onTouchEvent(android.view.MotionEvent)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 489, locals = 4, stack = 12):
       [0] aload_1 v1
-      [1] invokevirtual #94
+      [1] invokevirtual #125
         + Methodref [android/view/MotionEvent.getPointerCount ()I]
       [4] istore_2 v2
       [5] aload_1 v1
-      [6] invokevirtual #93
+      [6] invokevirtual #124
         + Methodref [android/view/MotionEvent.getAction ()I]
       [9] iconst_1
       [10] ificmpne +68 (target=78)
       [13] aload_0 v0
       [14] aload_0 v0
-      [15] getfield #64
-        + Fieldref [com/dominic/remote/RemoteView.s I]
+      [15] getfield #93
+        + Fieldref [com/dominic/remote/RemoteView.z I]
       [18] aload_0 v0
-      [19] invokespecial #103
+      [19] invokespecial #135
         + Methodref [com/dominic/remote/RemoteView.getDirection ()I]
-      [22] invokespecial #101
+      [22] invokespecial #132
         + Methodref [com/dominic/remote/RemoteView.a (II)V]
       [25] aload_0 v0
       [26] aload_0 v0
@@ -56751,56 +56878,56 @@ Methods (count = 9):
       [34] aload_0 v0
       [35] iconst_0
       [36] dup_x1
-      [37] putfield #64
-        + Fieldref [com/dominic/remote/RemoteView.s I]
+      [37] putfield #93
+        + Fieldref [com/dominic/remote/RemoteView.z I]
       [40] i2f
       [41] dup_x1
-      [42] putfield #68
-        + Fieldref [com/dominic/remote/RemoteView.w F]
+      [42] putfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
       [45] dup_x1
-      [46] putfield #67
-        + Fieldref [com/dominic/remote/RemoteView.v F]
+      [46] putfield #65
+        + Fieldref [com/dominic/remote/RemoteView.C F]
       [49] dup_x1
-      [50] putfield #54
-        + Fieldref [com/dominic/remote/RemoteView.i F]
+      [50] putfield #77
+        + Fieldref [com/dominic/remote/RemoteView.j F]
       [53] dup_x1
-      [54] putfield #53
-        + Fieldref [com/dominic/remote/RemoteView.h F]
+      [54] putfield #76
+        + Fieldref [com/dominic/remote/RemoteView.i F]
       [57] dup_x1
-      [58] putfield #52
-        + Fieldref [com/dominic/remote/RemoteView.g F]
+      [58] putfield #75
+        + Fieldref [com/dominic/remote/RemoteView.h F]
       [61] dup_x1
-      [62] putfield #60
-        + Fieldref [com/dominic/remote/RemoteView.o F]
+      [62] putfield #89
+        + Fieldref [com/dominic/remote/RemoteView.v F]
       [65] dup_x1
-      [66] putfield #58
-        + Fieldref [com/dominic/remote/RemoteView.m F]
+      [66] putfield #87
+        + Fieldref [com/dominic/remote/RemoteView.t F]
       [69] dup_x1
-      [70] putfield #61
-        + Fieldref [com/dominic/remote/RemoteView.p F]
-      [73] putfield #59
-        + Fieldref [com/dominic/remote/RemoteView.n F]
+      [70] putfield #90
+        + Fieldref [com/dominic/remote/RemoteView.w F]
+      [73] putfield #88
+        + Fieldref [com/dominic/remote/RemoteView.u F]
       [76] iconst_1
       [77] ireturn
       [78] aload_0 v0
-      [79] getfield #64
-        + Fieldref [com/dominic/remote/RemoteView.s I]
+      [79] getfield #93
+        + Fieldref [com/dominic/remote/RemoteView.z I]
       [82] ifeq +11 (target=93)
       [85] aload_0 v0
-      [86] getfield #64
-        + Fieldref [com/dominic/remote/RemoteView.s I]
+      [86] getfield #93
+        + Fieldref [com/dominic/remote/RemoteView.z I]
       [89] iload_2 v2
       [90] ificmpge +13 (target=103)
       [93] aload_0 v0
       [94] iconst_1
-      [95] putfield #66
-        + Fieldref [com/dominic/remote/RemoteView.u Z]
+      [95] putfield #64
+        + Fieldref [com/dominic/remote/RemoteView.B Z]
       [98] aload_0 v0
       [99] iload_2 v2
-      [100] putfield #64
-        + Fieldref [com/dominic/remote/RemoteView.s I]
+      [100] putfield #93
+        + Fieldref [com/dominic/remote/RemoteView.z I]
       [103] aload_1 v1
-      [104] invokevirtual #93
+      [104] invokevirtual #124
         + Methodref [android/view/MotionEvent.getAction ()I]
       [107] tableswitch (3 offsets, default=182) (target=289)
         0: offset = 25, target = 132
@@ -56809,11 +56936,11 @@ Methods (count = 9):
         default: offset = 182, target = 289
       [132] aload_0 v0
       [133] iconst_1
-      [134] putfield #65
-        + Fieldref [com/dominic/remote/RemoteView.t Z]
+      [134] putfield #63
+        + Fieldref [com/dominic/remote/RemoteView.A Z]
       [137] aload_0 v0
-      [138] getfield #65
-        + Fieldref [com/dominic/remote/RemoteView.t Z]
+      [138] getfield #63
+        + Fieldref [com/dominic/remote/RemoteView.A Z]
       [141] ifeq +150 (target=291)
       [144] iload_2 v2
       [145] iconst_2
@@ -56823,75 +56950,75 @@ Methods (count = 9):
       [153] aload_0 v0
       [154] aload_1 v1
       [155] iconst_0
-      [156] invokevirtual #95
+      [156] invokevirtual #126
         + Methodref [android/view/MotionEvent.getX (I)F]
       [159] dup_x1
-      [160] putfield #59
-        + Fieldref [com/dominic/remote/RemoteView.n F]
-      [163] putfield #58
-        + Fieldref [com/dominic/remote/RemoteView.m F]
+      [160] putfield #88
+        + Fieldref [com/dominic/remote/RemoteView.u F]
+      [163] putfield #87
+        + Fieldref [com/dominic/remote/RemoteView.t F]
       [166] iconst_0
       [167] istore_3 v3
       [168] goto +55 (target=223)
       [171] aload_0 v0
       [172] aload_1 v1
       [173] iload_3 v3
-      [174] invokevirtual #95
+      [174] invokevirtual #126
         + Methodref [android/view/MotionEvent.getX (I)F]
-      [177] putfield #62
-        + Fieldref [com/dominic/remote/RemoteView.q F]
+      [177] putfield #91
+        + Fieldref [com/dominic/remote/RemoteView.x F]
       [180] aload_0 v0
-      [181] getfield #62
-        + Fieldref [com/dominic/remote/RemoteView.q F]
+      [181] getfield #91
+        + Fieldref [com/dominic/remote/RemoteView.x F]
       [184] aload_0 v0
-      [185] getfield #58
-        + Fieldref [com/dominic/remote/RemoteView.m F]
+      [185] getfield #87
+        + Fieldref [com/dominic/remote/RemoteView.t F]
       [188] fcmpg
       [189] ifge +11 (target=200)
       [192] aload_0 v0
       [193] aload_0 v0
-      [194] getfield #62
-        + Fieldref [com/dominic/remote/RemoteView.q F]
-      [197] putfield #58
-        + Fieldref [com/dominic/remote/RemoteView.m F]
+      [194] getfield #91
+        + Fieldref [com/dominic/remote/RemoteView.x F]
+      [197] putfield #87
+        + Fieldref [com/dominic/remote/RemoteView.t F]
       [200] aload_0 v0
-      [201] getfield #62
-        + Fieldref [com/dominic/remote/RemoteView.q F]
+      [201] getfield #91
+        + Fieldref [com/dominic/remote/RemoteView.x F]
       [204] aload_0 v0
-      [205] getfield #59
-        + Fieldref [com/dominic/remote/RemoteView.n F]
+      [205] getfield #88
+        + Fieldref [com/dominic/remote/RemoteView.u F]
       [208] fcmpl
       [209] ifle +11 (target=220)
       [212] aload_0 v0
       [213] aload_0 v0
-      [214] getfield #62
-        + Fieldref [com/dominic/remote/RemoteView.q F]
-      [217] putfield #59
-        + Fieldref [com/dominic/remote/RemoteView.n F]
+      [214] getfield #91
+        + Fieldref [com/dominic/remote/RemoteView.x F]
+      [217] putfield #88
+        + Fieldref [com/dominic/remote/RemoteView.u F]
       [220] iinc v3, 1
       [223] iload_3 v3
       [224] iload_2 v2
       [225] ificmplt -54 (target=171)
       [228] aload_0 v0
       [229] aload_0 v0
-      [230] getfield #59
-        + Fieldref [com/dominic/remote/RemoteView.n F]
+      [230] getfield #88
+        + Fieldref [com/dominic/remote/RemoteView.u F]
       [233] aload_0 v0
-      [234] getfield #58
-        + Fieldref [com/dominic/remote/RemoteView.m F]
+      [234] getfield #87
+        + Fieldref [com/dominic/remote/RemoteView.t F]
       [237] fsub
       [238] fconst_2
       [239] fdiv
       [240] aload_0 v0
-      [241] getfield #58
-        + Fieldref [com/dominic/remote/RemoteView.m F]
+      [241] getfield #87
+        + Fieldref [com/dominic/remote/RemoteView.t F]
       [244] fadd
-      [245] putfield #52
-        + Fieldref [com/dominic/remote/RemoteView.g F]
+      [245] putfield #75
+        + Fieldref [com/dominic/remote/RemoteView.h F]
       [248] aload_0 v0
       [249] iconst_0
-      [250] putfield #65
-        + Fieldref [com/dominic/remote/RemoteView.t Z]
+      [250] putfield #63
+        + Fieldref [com/dominic/remote/RemoteView.A Z]
       [253] goto +38 (target=291)
       [256] aload_0 v0
       [257] aload_0 v0
@@ -56901,22 +57028,22 @@ Methods (count = 9):
       [261] aload_0 v0
       [262] fconst_0
       [263] dup_x1
-      [264] putfield #53
-        + Fieldref [com/dominic/remote/RemoteView.h F]
+      [264] putfield #76
+        + Fieldref [com/dominic/remote/RemoteView.i F]
       [267] dup_x1
-      [268] putfield #52
-        + Fieldref [com/dominic/remote/RemoteView.g F]
+      [268] putfield #75
+        + Fieldref [com/dominic/remote/RemoteView.h F]
       [271] dup_x1
-      [272] putfield #60
-        + Fieldref [com/dominic/remote/RemoteView.o F]
+      [272] putfield #89
+        + Fieldref [com/dominic/remote/RemoteView.v F]
       [275] dup_x1
-      [276] putfield #58
-        + Fieldref [com/dominic/remote/RemoteView.m F]
+      [276] putfield #87
+        + Fieldref [com/dominic/remote/RemoteView.t F]
       [279] dup_x1
-      [280] putfield #61
-        + Fieldref [com/dominic/remote/RemoteView.p F]
-      [283] putfield #59
-        + Fieldref [com/dominic/remote/RemoteView.n F]
+      [280] putfield #90
+        + Fieldref [com/dominic/remote/RemoteView.w F]
+      [283] putfield #88
+        + Fieldref [com/dominic/remote/RemoteView.u F]
       [286] goto +5 (target=291)
       [289] iconst_0
       [290] ireturn
@@ -56924,145 +57051,145 @@ Methods (count = 9):
       [292] aload_0 v0
       [293] aload_1 v1
       [294] iconst_0
-      [295] invokevirtual #96
+      [295] invokevirtual #127
         + Methodref [android/view/MotionEvent.getY (I)F]
       [298] dup_x1
-      [299] putfield #61
-        + Fieldref [com/dominic/remote/RemoteView.p F]
-      [302] putfield #60
-        + Fieldref [com/dominic/remote/RemoteView.o F]
+      [299] putfield #90
+        + Fieldref [com/dominic/remote/RemoteView.w F]
+      [302] putfield #89
+        + Fieldref [com/dominic/remote/RemoteView.v F]
       [305] iconst_0
       [306] istore_3 v3
       [307] goto +55 (target=362)
       [310] aload_0 v0
       [311] aload_1 v1
       [312] iload_3 v3
-      [313] invokevirtual #96
+      [313] invokevirtual #127
         + Methodref [android/view/MotionEvent.getY (I)F]
-      [316] putfield #63
-        + Fieldref [com/dominic/remote/RemoteView.r F]
+      [316] putfield #92
+        + Fieldref [com/dominic/remote/RemoteView.y F]
       [319] aload_0 v0
-      [320] getfield #63
-        + Fieldref [com/dominic/remote/RemoteView.r F]
+      [320] getfield #92
+        + Fieldref [com/dominic/remote/RemoteView.y F]
       [323] aload_0 v0
-      [324] getfield #60
-        + Fieldref [com/dominic/remote/RemoteView.o F]
+      [324] getfield #89
+        + Fieldref [com/dominic/remote/RemoteView.v F]
       [327] fcmpg
       [328] ifge +11 (target=339)
       [331] aload_0 v0
       [332] aload_0 v0
-      [333] getfield #63
-        + Fieldref [com/dominic/remote/RemoteView.r F]
-      [336] putfield #60
-        + Fieldref [com/dominic/remote/RemoteView.o F]
+      [333] getfield #92
+        + Fieldref [com/dominic/remote/RemoteView.y F]
+      [336] putfield #89
+        + Fieldref [com/dominic/remote/RemoteView.v F]
       [339] aload_0 v0
-      [340] getfield #63
-        + Fieldref [com/dominic/remote/RemoteView.r F]
+      [340] getfield #92
+        + Fieldref [com/dominic/remote/RemoteView.y F]
       [343] aload_0 v0
-      [344] getfield #61
-        + Fieldref [com/dominic/remote/RemoteView.p F]
+      [344] getfield #90
+        + Fieldref [com/dominic/remote/RemoteView.w F]
       [347] fcmpl
       [348] ifle +11 (target=359)
       [351] aload_0 v0
       [352] aload_0 v0
-      [353] getfield #63
-        + Fieldref [com/dominic/remote/RemoteView.r F]
-      [356] putfield #61
-        + Fieldref [com/dominic/remote/RemoteView.p F]
+      [353] getfield #92
+        + Fieldref [com/dominic/remote/RemoteView.y F]
+      [356] putfield #90
+        + Fieldref [com/dominic/remote/RemoteView.w F]
       [359] iinc v3, 1
       [362] iload_3 v3
       [363] iload_2 v2
       [364] ificmplt -54 (target=310)
       [367] aload_0 v0
       [368] aload_0 v0
-      [369] getfield #61
-        + Fieldref [com/dominic/remote/RemoteView.p F]
+      [369] getfield #90
+        + Fieldref [com/dominic/remote/RemoteView.w F]
       [372] aload_0 v0
-      [373] getfield #60
-        + Fieldref [com/dominic/remote/RemoteView.o F]
+      [373] getfield #89
+        + Fieldref [com/dominic/remote/RemoteView.v F]
       [376] fsub
       [377] fconst_2
       [378] fdiv
       [379] aload_0 v0
-      [380] getfield #60
-        + Fieldref [com/dominic/remote/RemoteView.o F]
+      [380] getfield #89
+        + Fieldref [com/dominic/remote/RemoteView.v F]
       [383] fadd
-      [384] putfield #53
-        + Fieldref [com/dominic/remote/RemoteView.h F]
+      [384] putfield #76
+        + Fieldref [com/dominic/remote/RemoteView.i F]
       [387] aload_0 v0
-      [388] getfield #66
-        + Fieldref [com/dominic/remote/RemoteView.u Z]
+      [388] getfield #64
+        + Fieldref [com/dominic/remote/RemoteView.B Z]
       [391] ifeq +58 (target=449)
       [394] aload_0 v0
       [395] aload_0 v0
-      [396] getfield #61
-        + Fieldref [com/dominic/remote/RemoteView.p F]
+      [396] getfield #90
+        + Fieldref [com/dominic/remote/RemoteView.w F]
       [399] aload_0 v0
-      [400] getfield #60
-        + Fieldref [com/dominic/remote/RemoteView.o F]
+      [400] getfield #89
+        + Fieldref [com/dominic/remote/RemoteView.v F]
       [403] fsub
       [404] aload_0 v0
-      [405] getfield #61
-        + Fieldref [com/dominic/remote/RemoteView.p F]
+      [405] getfield #90
+        + Fieldref [com/dominic/remote/RemoteView.w F]
       [408] aload_0 v0
-      [409] getfield #60
-        + Fieldref [com/dominic/remote/RemoteView.o F]
+      [409] getfield #89
+        + Fieldref [com/dominic/remote/RemoteView.v F]
       [412] fsub
       [413] fmul
       [414] aload_0 v0
-      [415] getfield #59
-        + Fieldref [com/dominic/remote/RemoteView.n F]
+      [415] getfield #88
+        + Fieldref [com/dominic/remote/RemoteView.u F]
       [418] aload_0 v0
-      [419] getfield #58
-        + Fieldref [com/dominic/remote/RemoteView.m F]
+      [419] getfield #87
+        + Fieldref [com/dominic/remote/RemoteView.t F]
       [422] fsub
       [423] aload_0 v0
-      [424] getfield #59
-        + Fieldref [com/dominic/remote/RemoteView.n F]
+      [424] getfield #88
+        + Fieldref [com/dominic/remote/RemoteView.u F]
       [427] aload_0 v0
-      [428] getfield #58
-        + Fieldref [com/dominic/remote/RemoteView.m F]
+      [428] getfield #87
+        + Fieldref [com/dominic/remote/RemoteView.t F]
       [431] fsub
       [432] fmul
       [433] fadd
       [434] f2d
-      [435] invokestatic #106
+      [435] invokestatic #139
         + Methodref [java/lang/Math.sqrt (D)D]
       [438] d2f
       [439] fconst_2
       [440] fdiv
-      [441] putfield #54
-        + Fieldref [com/dominic/remote/RemoteView.i F]
+      [441] putfield #77
+        + Fieldref [com/dominic/remote/RemoteView.j F]
       [444] aload_0 v0
       [445] iconst_0
-      [446] putfield #66
-        + Fieldref [com/dominic/remote/RemoteView.u Z]
+      [446] putfield #64
+        + Fieldref [com/dominic/remote/RemoteView.B Z]
       [449] aload_0 v0
-      [450] getfield #67
-        + Fieldref [com/dominic/remote/RemoteView.v F]
+      [450] getfield #65
+        + Fieldref [com/dominic/remote/RemoteView.C F]
       [453] fconst_0
       [454] fcmpl
       [455] ifne +28 (target=483)
       [458] aload_0 v0
-      [459] getfield #68
-        + Fieldref [com/dominic/remote/RemoteView.w F]
+      [459] getfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
       [462] fconst_0
       [463] fcmpl
       [464] ifne +19 (target=483)
       [467] aload_0 v0
       [468] aload_0 v0
-      [469] getfield #52
-        + Fieldref [com/dominic/remote/RemoteView.g F]
-      [472] putfield #67
-        + Fieldref [com/dominic/remote/RemoteView.v F]
+      [469] getfield #75
+        + Fieldref [com/dominic/remote/RemoteView.h F]
+      [472] putfield #65
+        + Fieldref [com/dominic/remote/RemoteView.C F]
       [475] aload_0 v0
       [476] aload_0 v0
-      [477] getfield #53
-        + Fieldref [com/dominic/remote/RemoteView.h F]
-      [480] putfield #68
-        + Fieldref [com/dominic/remote/RemoteView.w F]
+      [477] getfield #76
+        + Fieldref [com/dominic/remote/RemoteView.i F]
+      [480] putfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
       [483] aload_0 v0
-      [484] invokevirtual #105
+      [484] invokevirtual #137
         + Methodref [com/dominic/remote/RemoteView.invalidate ()V]
       [487] iconst_1
       [488] ireturn
@@ -57100,19 +57227,19 @@ Methods (count = 9):
         2: offset = 37, target = 38
         3: offset = 40, target = 41
         default: offset = 43, target = 44
-      [32] ldc #9
+      [32] ldc #15
         + String [None]
       [34] areturn
-      [35] ldc #10
+      [35] ldc #16
         + String [Same]
       [37] areturn
-      [38] ldc #7
+      [38] ldc #13
         + String [Change Volume]
       [40] areturn
-      [41] ldc #11
+      [41] ldc #17
         + String [Skip Tracks]
       [43] areturn
-      [44] ldc #12
+      [44] ldc #18
         + String [Try other fingers]
       [46] areturn
       Code attribute exceptions (count = 0):
@@ -57129,24 +57256,24 @@ Methods (count = 9):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 51, locals = 2, stack = 2):
       [0] aload_0 v0
-      [1] getfield #68
-        + Fieldref [com/dominic/remote/RemoteView.w F]
+      [1] getfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
       [4] aload_0 v0
-      [5] getfield #53
-        + Fieldref [com/dominic/remote/RemoteView.h F]
+      [5] getfield #76
+        + Fieldref [com/dominic/remote/RemoteView.i F]
       [8] fsub
       [9] fstore_1 v1
       [10] fload_1 v1
       [11] aload_0 v0
-      [12] getfield #57
-        + Fieldref [com/dominic/remote/RemoteView.l I]
+      [12] getfield #80
+        + Fieldref [com/dominic/remote/RemoteView.m I]
       [15] i2f
       [16] fcmpg
       [17] ifgt +16 (target=33)
       [20] fload_1 v1
       [21] aload_0 v0
-      [22] getfield #57
-        + Fieldref [com/dominic/remote/RemoteView.l I]
+      [22] getfield #80
+        + Fieldref [com/dominic/remote/RemoteView.m I]
       [25] ineg
       [26] i2f
       [27] fcmpl
@@ -57154,11 +57281,11 @@ Methods (count = 9):
       [31] iconst_0
       [32] ireturn
       [33] aload_0 v0
-      [34] getfield #68
-        + Fieldref [com/dominic/remote/RemoteView.w F]
+      [34] getfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
       [37] aload_0 v0
-      [38] getfield #53
-        + Fieldref [com/dominic/remote/RemoteView.h F]
+      [38] getfield #76
+        + Fieldref [com/dominic/remote/RemoteView.i F]
       [41] fcmpl
       [42] ifle +7 (target=49)
       [45] iconst_1
@@ -57177,43 +57304,43 @@ Methods (count = 9):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 54, locals = 2, stack = 2):
       [0] aload_0 v0
-      [1] getfield #68
-        + Fieldref [com/dominic/remote/RemoteView.w F]
+      [1] getfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
       [4] aload_0 v0
-      [5] getfield #53
-        + Fieldref [com/dominic/remote/RemoteView.h F]
+      [5] getfield #76
+        + Fieldref [com/dominic/remote/RemoteView.i F]
       [8] fsub
       [9] fstore_1 v1
       [10] fload_1 v1
       [11] aload_0 v0
-      [12] getfield #57
-        + Fieldref [com/dominic/remote/RemoteView.l I]
+      [12] getfield #80
+        + Fieldref [com/dominic/remote/RemoteView.m I]
       [15] i2f
       [16] fcmpg
       [17] ifgt +17 (target=34)
       [20] fload_1 v1
       [21] aload_0 v0
-      [22] getfield #57
-        + Fieldref [com/dominic/remote/RemoteView.l I]
+      [22] getfield #80
+        + Fieldref [com/dominic/remote/RemoteView.m I]
       [25] ineg
       [26] i2f
       [27] fcmpl
       [28] iflt +6 (target=34)
-      [31] ldc #9
+      [31] ldc #15
         + String [None]
       [33] areturn
       [34] aload_0 v0
-      [35] getfield #68
-        + Fieldref [com/dominic/remote/RemoteView.w F]
+      [35] getfield #66
+        + Fieldref [com/dominic/remote/RemoteView.D F]
       [38] aload_0 v0
-      [39] getfield #53
-        + Fieldref [com/dominic/remote/RemoteView.h F]
+      [39] getfield #76
+        + Fieldref [com/dominic/remote/RemoteView.i F]
       [42] fcmpl
       [43] ifle +8 (target=51)
-      [46] ldc #13
+      [46] ldc #19
         + String [Up]
       [48] goto +5 (target=53)
-      [51] ldc #8
+      [51] ldc #14
         + String [Down]
       [53] areturn
       Code attribute exceptions (count = 0):
@@ -57226,131 +57353,325 @@ Methods (count = 9):
     Access flags: 0x2
       = private void a(int,int)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 188, locals = 11, stack = 9):
-      [0] iconst_0
-      [1] istore_3 v3
-      [2] iconst_0
-      [3] istore v4
-      [5] iload_1 v1
-      [6] tableswitch (4 offsets, default=74) (target=80)
-        0: offset = 74, target = 80
-        1: offset = 30, target = 36
-        2: offset = 33, target = 39
-        3: offset = 56, target = 62
-        default: offset = 74, target = 80
-      [36] goto +45 (target=81)
-      [39] aload_0 v0
-      [40] invokevirtual #102
+    + Code attribute instructions (code length = 192, locals = 11, stack = 9):
+      [0] iload_2 v2
+      [1] ifne +4 (target=5)
+      [4] return
+      [5] iconst_0
+      [6] istore_3 v3
+      [7] iconst_0
+      [8] istore v4
+      [10] iload_1 v1
+      [11] tableswitch (4 offsets, default=73) (target=84)
+        0: offset = 73, target = 84
+        1: offset = 29, target = 40
+        2: offset = 32, target = 43
+        3: offset = 55, target = 66
+        default: offset = 73, target = 84
+      [40] goto +45 (target=85)
+      [43] aload_0 v0
+      [44] invokevirtual #134
         + Methodref [com/dominic/remote/RemoteView.getContext ()Landroid/content/Context;]
-      [43] ldc #16
+      [47] ldc #23
         + String [audio]
-      [45] invokevirtual #70
+      [49] invokevirtual #95
         + Methodref [android/content/Context.getSystemService (Ljava/lang/String;)Ljava/lang/Object;]
-      [48] checkcast #28
+      [52] checkcast #42
         + Class [android/media/AudioManager]
-      [51] astore v5
-      [53] aload v5
-      [55] iconst_3
-      [56] iload_2 v2
-      [57] iconst_0
-      [58] invokevirtual #89
+      [55] astore v5
+      [57] aload v5
+      [59] iconst_3
+      [60] iload_2 v2
+      [61] iconst_0
+      [62] invokevirtual #120
         + Methodref [android/media/AudioManager.adjustStreamVolume (III)V]
-      [61] return
-      [62] iload_2 v2
-      [63] ifle +8 (target=71)
-      [66] bipush 87
-      [68] goto +5 (target=73)
-      [71] bipush 88
-      [73] istore_3 v3
-      [74] iconst_1
-      [75] istore v4
-      [77] goto +4 (target=81)
-      [80] return
-      [81] iload v4
-      [83] ifeq +104 (target=187)
-      [86] invokestatic #90
+      [65] return
+      [66] iload_2 v2
+      [67] ifle +8 (target=75)
+      [70] bipush 87
+      [72] goto +5 (target=77)
+      [75] bipush 88
+      [77] istore_3 v3
+      [78] iconst_1
+      [79] istore v4
+      [81] goto +4 (target=85)
+      [84] return
+      [85] iload v4
+      [87] ifeq +104 (target=191)
+      [90] invokestatic #121
         + Methodref [android/os/SystemClock.uptimeMillis ()J]
-      [89] lstore v5
-      [91] new #19
+      [93] lstore v5
+      [95] new #31
         + Class [android/content/Intent]
-      [94] dup
-      [95] ldc #14
+      [98] dup
+      [99] ldc #21
         + String [android.intent.action.MEDIA_BUTTON]
-      [97] aconst_null
-      [98] invokespecial #72
+      [101] aconst_null
+      [102] invokespecial #98
         + Methodref [android/content/Intent.<init> (Ljava/lang/String;Landroid/net/Uri;)V]
-      [101] astore v7
-      [103] new #31
+      [105] astore v7
+      [107] new #45
         + Class [android/view/KeyEvent]
-      [106] dup
-      [107] lload v5
-      [109] lload v5
-      [111] iconst_0
-      [112] iload_3 v3
-      [113] iconst_0
-      [114] invokespecial #92
+      [110] dup
+      [111] lload v5
+      [113] lload v5
+      [115] iconst_0
+      [116] iload_3 v3
+      [117] iconst_0
+      [118] invokespecial #123
         + Methodref [android/view/KeyEvent.<init> (JJIII)V]
-      [117] astore v8
-      [119] aload v7
-      [121] ldc #15
+      [121] astore v8
+      [123] aload v7
+      [125] ldc #22
         + String [android.intent.extra.KEY_EVENT]
-      [123] aload v8
-      [125] invokevirtual #73
+      [127] aload v8
+      [129] invokevirtual #100
         + Methodref [android/content/Intent.putExtra (Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;]
-      [128] pop
-      [129] aload_0 v0
-      [130] invokevirtual #102
+      [132] pop
+      [133] aload_0 v0
+      [134] invokevirtual #134
         + Methodref [com/dominic/remote/RemoteView.getContext ()Landroid/content/Context;]
-      [133] aload v7
-      [135] aconst_null
-      [136] invokevirtual #71
+      [137] aload v7
+      [139] aconst_null
+      [140] invokevirtual #97
         + Methodref [android/content/Context.sendOrderedBroadcast (Landroid/content/Intent;Ljava/lang/String;)V]
-      [139] new #19
+      [143] new #31
         + Class [android/content/Intent]
-      [142] dup
-      [143] ldc #14
+      [146] dup
+      [147] ldc #21
         + String [android.intent.action.MEDIA_BUTTON]
-      [145] aconst_null
-      [146] invokespecial #72
+      [149] aconst_null
+      [150] invokespecial #98
         + Methodref [android/content/Intent.<init> (Ljava/lang/String;Landroid/net/Uri;)V]
-      [149] astore v9
-      [151] new #31
+      [153] astore v9
+      [155] new #45
         + Class [android/view/KeyEvent]
-      [154] dup
-      [155] lload v5
-      [157] lload v5
-      [159] iconst_1
-      [160] iload_3 v3
-      [161] iconst_0
-      [162] invokespecial #92
+      [158] dup
+      [159] lload v5
+      [161] lload v5
+      [163] iconst_1
+      [164] iload_3 v3
+      [165] iconst_0
+      [166] invokespecial #123
         + Methodref [android/view/KeyEvent.<init> (JJIII)V]
-      [165] astore v10
-      [167] aload v9
-      [169] ldc #15
+      [169] astore v10
+      [171] aload v9
+      [173] ldc #22
         + String [android.intent.extra.KEY_EVENT]
-      [171] aload v10
-      [173] invokevirtual #73
+      [175] aload v10
+      [177] invokevirtual #100
         + Methodref [android/content/Intent.putExtra (Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;]
-      [176] pop
-      [177] aload_0 v0
-      [178] invokevirtual #102
+      [180] pop
+      [181] aload_0 v0
+      [182] invokevirtual #134
         + Methodref [com/dominic/remote/RemoteView.getContext ()Landroid/content/Context;]
-      [181] aload v9
-      [183] aconst_null
-      [184] invokevirtual #71
+      [185] aload v9
+      [187] aconst_null
+      [188] invokevirtual #97
         + Methodref [android/content/Context.sendOrderedBroadcast (Landroid/content/Intent;Ljava/lang/String;)V]
-      [187] return
+      [191] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 1):
-      + Stack map table attribute (count = 8):
-        - [36] Var: ...[i][i], Stack: (empty)
-        - [39] Var: ..., Stack: (empty)
-        - [62] Var: ..., Stack: (empty)
-        - [71] Var: ..., Stack: (empty)
-        - [73] Var: ..., Stack: [i]
-        - [80] Var: ..., Stack: (empty)
-        - [81] Var: ..., Stack: (empty)
-        - [187] Var: ..., Stack: (empty)
+      + Stack map table attribute (count = 9):
+        - [5] Var: ..., Stack: (empty)
+        - [40] Var: ...[i][i], Stack: (empty)
+        - [43] Var: ..., Stack: (empty)
+        - [66] Var: ..., Stack: (empty)
+        - [75] Var: ..., Stack: (empty)
+        - [77] Var: ..., Stack: [i]
+        - [84] Var: ..., Stack: (empty)
+        - [85] Var: ..., Stack: (empty)
+        - [191] Var: ..., Stack: (empty)
+  + Method:       b()V
+    Access flags: 0x2
+      = private void b()
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 32, locals = 3, stack = 4):
+      [0] new #32
+        + Class [android/content/IntentFilter]
+      [3] dup
+      [4] ldc #20
+        + String [android.intent.action.BATTERY_CHANGED]
+      [6] invokespecial #102
+        + Methodref [android/content/IntentFilter.<init> (Ljava/lang/String;)V]
+      [9] astore_1 v1
+      [10] aload_0 v0
+      [11] invokevirtual #134
+        + Methodref [com/dominic/remote/RemoteView.getContext ()Landroid/content/Context;]
+      [14] aconst_null
+      [15] aload_1 v1
+      [16] invokevirtual #96
+        + Methodref [android/content/Context.registerReceiver (Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;]
+      [19] astore_2 v2
+      [20] aload_0 v0
+      [21] aload_2 v2
+      [22] ldc #28
+        + String [level]
+      [24] iconst_m1
+      [25] invokevirtual #99
+        + Methodref [android/content/Intent.getIntExtra (Ljava/lang/String;I)I]
+      [28] putfield #84
+        + Fieldref [com/dominic/remote/RemoteView.q I]
+      [31] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       a(Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V
+    Access flags: 0x1008
+      = static synthetic void a(com.dominic.remote.RemoteView,java.lang.String)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 6, locals = 2, stack = 2):
+      [0] aload_0 v0
+      [1] aload_1 v1
+      [2] putfield #82
+        + Fieldref [com/dominic/remote/RemoteView.o Ljava/lang/String;]
+      [5] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       b(Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V
+    Access flags: 0x1008
+      = static synthetic void b(com.dominic.remote.RemoteView,java.lang.String)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 6, locals = 2, stack = 2):
+      [0] aload_0 v0
+      [1] aload_1 v1
+      [2] putfield #83
+        + Fieldref [com/dominic/remote/RemoteView.p Ljava/lang/String;]
+      [5] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       c(Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V
+    Access flags: 0x1008
+      = static synthetic void c(com.dominic.remote.RemoteView,java.lang.String)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 6, locals = 2, stack = 2):
+      [0] aload_0 v0
+      [1] aload_1 v1
+      [2] putfield #81
+        + Fieldref [com/dominic/remote/RemoteView.n Ljava/lang/String;]
+      [5] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+
+Class file attributes (count = 0):
+
+_____________________________________________________________________
++ Program class: com/dominic/remote/b
+  Superclass:    android/content/BroadcastReceiver
+  Major version: 0x33
+  Minor version: 0x0
+  Access flags:  0x20
+    = class com.dominic.remote.b extends android.content.BroadcastReceiver
+
+Interfaces (count = 0):
+
+Constant Pool (count = 43):
+  + String [album]
+  + String [artist]
+  + String [track]
+  + Class [android/content/BroadcastReceiver]
+  + Class [android/content/Intent]
+  + Class [com/dominic/remote/RemoteView]
+  + Class [com/dominic/remote/b]
+  + Fieldref [com/dominic/remote/b.a Lcom/dominic/remote/RemoteView;]
+  + Methodref [android/content/BroadcastReceiver.<init> ()V]
+  + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
+  + Methodref [com/dominic/remote/RemoteView.a (Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
+  + Methodref [com/dominic/remote/RemoteView.b (Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
+  + Methodref [com/dominic/remote/RemoteView.c (Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
+  + Methodref [com/dominic/remote/RemoteView.invalidate ()V]
+  + NameAndType [<init> ()V]
+  + NameAndType [a (Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
+  + NameAndType [a Lcom/dominic/remote/RemoteView;]
+  + NameAndType [b (Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
+  + NameAndType [c (Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
+  + NameAndType [getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
+  + NameAndType [invalidate ()V]
+  + Utf8 [()V]
+  + Utf8 [(Landroid/content/Context;Landroid/content/Intent;)V]
+  + Utf8 [(Lcom/dominic/remote/RemoteView;)V]
+  + Utf8 [(Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
+  + Utf8 [(Ljava/lang/String;)Ljava/lang/String;]
+  + Utf8 [<init>]
+  + Utf8 [Code]
+  + Utf8 [Lcom/dominic/remote/RemoteView;]
+  + Utf8 [a]
+  + Utf8 [album]
+  + Utf8 [android/content/BroadcastReceiver]
+  + Utf8 [android/content/Intent]
+  + Utf8 [artist]
+  + Utf8 [b]
+  + Utf8 [c]
+  + Utf8 [com/dominic/remote/RemoteView]
+  + Utf8 [com/dominic/remote/b]
+  + Utf8 [getStringExtra]
+  + Utf8 [invalidate]
+  + Utf8 [onReceive]
+  + Utf8 [track]
+
+Fields (count = 1):
+  + Field:        a Lcom/dominic/remote/RemoteView;
+    Access flags: 0x1010
+      = final synthetic com.dominic.remote.RemoteView a
+
+Methods (count = 2):
+  - Method:       <init>(Lcom/dominic/remote/RemoteView;)V
+    Access flags: 0x0
+      = b(com.dominic.remote.RemoteView)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 10, locals = 2, stack = 2):
+      [0] aload_0 v0
+      [1] aload_1 v1
+      [2] putfield #8
+        + Fieldref [com/dominic/remote/b.a Lcom/dominic/remote/RemoteView;]
+      [5] aload_0 v0
+      [6] invokespecial #9
+        + Methodref [android/content/BroadcastReceiver.<init> ()V]
+      [9] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+    Access flags: 0x1
+      = public void onReceive(android.content.Context,android.content.Intent)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 47, locals = 3, stack = 3):
+      [0] aload_0 v0
+      [1] getfield #8
+        + Fieldref [com/dominic/remote/b.a Lcom/dominic/remote/RemoteView;]
+      [4] aload_2 v2
+      [5] ldc #2
+        + String [artist]
+      [7] invokevirtual #10
+        + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
+      [10] invokestatic #11
+        + Methodref [com/dominic/remote/RemoteView.a (Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
+      [13] aload_0 v0
+      [14] getfield #8
+        + Fieldref [com/dominic/remote/b.a Lcom/dominic/remote/RemoteView;]
+      [17] aload_2 v2
+      [18] ldc #1
+        + String [album]
+      [20] invokevirtual #10
+        + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
+      [23] invokestatic #12
+        + Methodref [com/dominic/remote/RemoteView.b (Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
+      [26] aload_0 v0
+      [27] getfield #8
+        + Fieldref [com/dominic/remote/b.a Lcom/dominic/remote/RemoteView;]
+      [30] aload_2 v2
+      [31] ldc #3
+        + String [track]
+      [33] invokevirtual #10
+        + Methodref [android/content/Intent.getStringExtra (Ljava/lang/String;)Ljava/lang/String;]
+      [36] invokestatic #13
+        + Methodref [com/dominic/remote/RemoteView.c (Lcom/dominic/remote/RemoteView;Ljava/lang/String;)V]
+      [39] aload_0 v0
+      [40] getfield #8
+        + Fieldref [com/dominic/remote/b.a Lcom/dominic/remote/RemoteView;]
+      [43] invokevirtual #14
+        + Methodref [com/dominic/remote/RemoteView.invalidate ()V]
+      [46] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
 
 Class file attributes (count = 0):
 
