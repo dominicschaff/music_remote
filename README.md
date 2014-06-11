@@ -22,3 +22,10 @@ Available Actions:
 
 After touching with the specified fingers, you can remove all but one finger
 to view the screen more easily.
+
+
+Sources:
+--------
+
+I got the idea for this app from this great developer, (I think I have 
+not done his project any justice though) : http://matthaeuskrenn.com/new-car-ui/
