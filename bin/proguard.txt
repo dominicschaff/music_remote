@@ -1,0 +1,6 @@
+# view AndroidManifest.xml #generated:16
+-keep class com.dominic.remote.MainActivity { <init>(...); }
+
+# view res/layout/fragment_main.xml #generated:19
+-keep class com.dominic.remote.RemoteView { <init>(...); }
+
