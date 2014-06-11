@@ -33,10 +33,10 @@ public class RemoteView extends View {
 	private float centerY = 0;
 	private float radius = 0;
 	private int width, height, diffs;
-	private String track, artist, album;
+	private String track = "", artist = "", album = "";
 	private int BatteryLevel = -1;
 	private int countdown = 100;
-	private final  int countdowndefault = 100;
+	private final int countdowndefault = 100;
 
 	public RemoteView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -105,17 +105,19 @@ public class RemoteView extends View {
 
 		canvas.drawText(track, 0, 48, textPaint);
 
-		canvas.drawText(artist, 0, 2*48, textPaint);
+		canvas.drawText(artist, 0, 2 * 48, textPaint);
 
-		canvas.drawText(album, 0, 3*48, textPaint);
+		canvas.drawText(album, 0, 3 * 48, textPaint);
 
 		if (currentPoints > 1)
 			canvas.drawText("Action: " + getAction(currentPoints) + " "
-					+ getDirectionString(), 0, 4*48, textPaint);
-		Calendar c = Calendar.getInstance(); 
+					+ getDirectionString(), 0, 4 * 48, textPaint);
+		Calendar c = Calendar.getInstance();
 
-		canvas.drawText(BatteryLevel + " %", width, 2*48, textRight);
-		canvas.drawText(c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE), width, 48, textRight);
+		canvas.drawText(BatteryLevel + " %", width, 2 * 48, textRight);
+		canvas.drawText(
+				c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE),
+				width, 48, textRight);
 	}
 
 	private float lx, rx, ly, ry, x, y;
@@ -272,28 +274,35 @@ public class RemoteView extends View {
 		public void onReceive(Context context, Intent intent) {
 			// String action = intent.getAction();
 			// String cmd = intent.getStringExtra("command");
-			artist = intent.getStringExtra("artist");
-			album = intent.getStringExtra("album");
-			track = intent.getStringExtra("track");
+			artist = intent.getStringExtra("artist") == null ? "" : intent
+					.getStringExtra("artist");
+			album = intent.getStringExtra("album") == null ? "" : intent
+					.getStringExtra("album");
+			track = intent.getStringExtra("track") == null ? "" : intent
+					.getStringExtra("track");
+
 			invalidate();
 		}
 	};
-	
-	
-	private void updateBattery()
-	{
+
+	private void updateBattery() {
 		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-		Intent batteryStatus = this.getContext().registerReceiver(null, ifilter);
-//		// Are we charging / charged?
-//		int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-//		boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
-//		                     status == BatteryManager.BATTERY_STATUS_FULL;
-//
-//		// How are we charging?
-//		int chargePlug = batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-//		boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
-//		boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
-		
-		BatteryLevel = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+		Intent batteryStatus = this.getContext()
+				.registerReceiver(null, ifilter);
+		// // Are we charging / charged?
+		// int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS,
+		// -1);
+		// boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
+		// ||
+		// status == BatteryManager.BATTERY_STATUS_FULL;
+		//
+		// // How are we charging?
+		// int chargePlug =
+		// batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+		// boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
+		// boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
+
+		BatteryLevel = batteryStatus
+				.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
 	}
 }
