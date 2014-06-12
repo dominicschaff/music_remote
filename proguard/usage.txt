@@ -1089,6 +1089,5 @@ com.dominic.remote.R$dimen
 com.dominic.remote.R$drawable
 com.dominic.remote.R$id
 com.dominic.remote.R$layout
-com.dominic.remote.R$menu
 com.dominic.remote.R$string
 com.dominic.remote.R$style

@@ -20,52 +20,77 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
+/**
+ * This is the monster class that does everything.
+ * 
+ * Note that currently I have a problem and am leaking a IntentRecevier, I am still working on how to fix this.
+ * 
+ * @author Dominic Schaff
+ *
+ */
 public class RemoteView extends View {
 
 	// drawing and canvas paint
-	private Paint drawPaint, canvasPaint, textPaint, drawRed, textRight;
-	// initial color
-	private final int paintColor = 0xFFFFFFFF;
+	private Paint circlePaint, canvasPaint, textPaint, deadzonePaine,
+			textRightPaint;
+
+	// Colours
+	private final int WHITE = 0xFFFFFFFF, RED = 0xFFFF0000;
+
 	// canvas bitmap
 	private Bitmap canvasBitmap;
 
+	// Variables to be used in drawing and actions
 	private float centerX = 0;
 	private float centerY = 0;
 	private float radius = 0;
+
+	// Screen information
 	private int width, height, diffs;
+
+	// Media Information
 	private String track = "", artist = "", album = "";
-	private int BatteryLevel = -1;
-	private int countdown = 100;
-	private final int countdowndefault = 100;
+
+	// Battery Status checks
+	private String BatteryLevel = "";
+	private final int COUNTDOWN_DEFAULT = 100;
+	private int countdown = COUNTDOWN_DEFAULT;
+
+	// Finger Information
+	private float lx, rx, ly, ry, x, y;
+	private int currentAction = 0;
+	private boolean getX = false, setRadius = false;
+	private float startX = 0, startY = 0;
 
 	public RemoteView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		doSetup();
-	}
 
-	private void doSetup() {
-		drawPaint = new Paint();
-		drawPaint.setColor(paintColor);
-		drawPaint.setAntiAlias(true);
-		drawPaint.setStrokeWidth(10);
-		drawPaint.setStyle(Paint.Style.STROKE);
-		drawPaint.setStrokeJoin(Paint.Join.ROUND);
-		drawPaint.setStrokeCap(Paint.Cap.ROUND);
-		drawRed = new Paint();
-		drawRed.setColor(0xFFFF4400);
-		drawRed.setAntiAlias(true);
-		drawRed.setStrokeWidth(10);
-		drawRed.setStyle(Paint.Style.FILL_AND_STROKE);
+		// Initialize all the paint styles
+
+		circlePaint = new Paint();
+		circlePaint.setColor(WHITE);
+		circlePaint.setAntiAlias(true);
+		circlePaint.setStrokeWidth(10);
+		circlePaint.setStyle(Paint.Style.STROKE);
+		circlePaint.setStrokeJoin(Paint.Join.ROUND);
+		circlePaint.setStrokeCap(Paint.Cap.ROUND);
+		deadzonePaine = new Paint();
+		deadzonePaine.setColor(RED);
+		deadzonePaine.setAntiAlias(true);
+		deadzonePaine.setStrokeWidth(10);
+		deadzonePaine.setStyle(Paint.Style.FILL_AND_STROKE);
 		textPaint = new Paint();
-		textPaint.setColor(paintColor);
+		textPaint.setColor(WHITE);
 		textPaint.setAntiAlias(true);
 		textPaint.setTextSize(48);
-		textRight = new Paint();
-		textRight.setColor(paintColor);
-		textRight.setAntiAlias(true);
-		textRight.setTextSize(48);
-		textRight.setTextAlign(Paint.Align.RIGHT);
+		textRightPaint = new Paint();
+		textRightPaint.setColor(WHITE);
+		textRightPaint.setAntiAlias(true);
+		textRightPaint.setTextSize(48);
+		textRightPaint.setTextAlign(Paint.Align.RIGHT);
 		canvasPaint = new Paint(Paint.DITHER_FLAG);
+
+		// Get Screen Information
 		Display display = ((Activity) this.getContext()).getWindowManager()
 				.getDefaultDisplay();
 		Point size = new Point();
@@ -74,13 +99,15 @@ public class RemoteView extends View {
 		height = size.y;
 		diffs = height / 20;
 
+		// Register to hear about media changes
 		IntentFilter iF = new IntentFilter();
 		iF.addAction("com.android.music.metachanged");
 		iF.addAction("com.android.music.playstatechanged");
 		iF.addAction("com.android.music.playbackcomplete");
 		iF.addAction("com.android.music.queuechanged");
+		getContext().registerReceiver(mReceiver, iF);
 
-		this.getContext().registerReceiver(mReceiver, iF);
+		// Get updated battery information
 		updateBattery();
 	}
 
@@ -92,58 +119,69 @@ public class RemoteView extends View {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
+		// Check if battery should be updated
 		countdown--;
 		if (countdown < 0) {
 			updateBattery();
-			countdown = countdowndefault;
+			countdown = COUNTDOWN_DEFAULT;
 		}
-		// draw view
+		// Background
 		canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
+
+		// Dead Zone
 		if (startY != 0)
-			canvas.drawRect(0, startY - diffs, width, startY + diffs, drawRed);
-		canvas.drawCircle(centerX, centerY, radius, drawPaint);
+			canvas.drawRect(0, startY - diffs, width, startY + diffs,
+					deadzonePaine);
 
+		// Finger Location
+		canvas.drawCircle(centerX, centerY, radius, circlePaint);
+
+		// Media Information
 		canvas.drawText(track, 0, 48, textPaint);
-
 		canvas.drawText(artist, 0, 2 * 48, textPaint);
-
 		canvas.drawText(album, 0, 3 * 48, textPaint);
 
-		if (currentPoints > 1)
-			canvas.drawText("Action: " + getAction(currentPoints) + " "
+		// Update Action Information
+		if (currentAction > 1)
+			canvas.drawText("Action: " + getAction() + " "
 					+ getDirectionString(), 0, 4 * 48, textPaint);
-		Calendar c = Calendar.getInstance();
 
-		canvas.drawText(BatteryLevel + " %", width, 2 * 48, textRight);
+		// Get Time and Battery
+		Calendar c = Calendar.getInstance();
+		canvas.drawText(BatteryLevel, width, 2 * 48, textRightPaint);
 		canvas.drawText(
 				c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE),
-				width, 48, textRight);
+				width, 48, textRightPaint);
 	}
 
-	private float lx, rx, ly, ry, x, y;
-	private int currentPoints = 0;
-	private boolean getX = false, setRadius = false;
-	private float startX = 0, startY = 0;
-
 	public boolean onTouchEvent(MotionEvent event) {
+		// How many fingers?
 		int points = event.getPointerCount();
+
+		// Did you remove your fingers?
 		if (event.getAction() == MotionEvent.ACTION_UP) {
-			runAction(currentPoints, getDirection());
-			rx = ry = lx = ly = centerX = centerY = radius = startX = startY = currentPoints = 0;
+			runAction();
+			rx = ry = lx = ly = centerX = centerY = radius = startX = startY = currentAction = 0;
 			return true;
 		}
-		if (currentPoints == 0 || currentPoints < points) {
+
+		// Are you adding fingers?
+		if (currentAction == 0 || currentAction < points) {
 			setRadius = true;
-			currentPoints = points;
+			currentAction = points;
 		}
 
+		// What event just happened?
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			getX = true;
 		case MotionEvent.ACTION_MOVE:
+			// You must have at least 2 fingers.
 			if (!getX || points < 2) {
 				break;
 			}
+
+			// Get x position of finger
 			lx = rx = event.getX(0);
 			for (int i = 0; i < points; i++) {
 				x = event.getX(i);
@@ -158,12 +196,12 @@ public class RemoteView extends View {
 			getX = false;
 			break;
 		case MotionEvent.ACTION_UP:
-			rx = ry = lx = ly = centerX = centerY = 0;
 			break;
 		default:
 			return false;
 		}
 
+		// Get Y position
 		ly = ry = event.getY(0);
 		for (int i = 0; i < points; i++) {
 			y = event.getY(i);
@@ -175,25 +213,36 @@ public class RemoteView extends View {
 			}
 		}
 		centerY = (float) (ry - ly) / 2 + ly;
+
+		// Should I re work out the radius?
 		if (setRadius) {
 			radius = (float) Math.sqrt((ry - ly) * (ry - ly) + (rx - lx)
 					* (rx - lx)) / 2;
 			setRadius = false;
 		}
-		if (startX == 0 && startY == 0) {
+
+		// is this the first time I added fingers.
+		if (startX == 0 && startY == 0 && centerX > 0 && centerY > 0) {
 			startX = centerX;
 			startY = centerY;
 		}
+
+		// make the screen redraw
 		invalidate();
 		return true;
 	}
 
-	private String getAction(int action) {
-		switch (action) {
+	/**
+	 * This is to print out the action.
+	 * 
+	 * @return Which action must run.
+	 */
+	private String getAction() {
+		switch (currentAction) {
 		case 0:
 			return "None";
 		case 1:
-			return "Same";
+			return "Add More Fingers";
 		case 2:
 			return "Change Volume";
 		case 3:
@@ -204,6 +253,11 @@ public class RemoteView extends View {
 		}
 	}
 
+	/**
+	 * Get the direction (up or down).
+	 * 
+	 * @return The direction.
+	 */
 	private int getDirection() {
 		float diff = startY - centerY;
 		if (diff <= diffs && diff >= -diffs)
@@ -211,29 +265,39 @@ public class RemoteView extends View {
 		return startY > centerY ? 1 : -1;
 	}
 
+	/**
+	 * Get the text description of the direction
+	 * 
+	 * @return
+	 */
 	private String getDirectionString() {
-		float diff = startY - centerY;
-		if (diff <= diffs && diff >= -diffs)
+		switch (getDirection()) {
+		case -1:
+			return "Down";
+		case 1:
+			return "Up";
+		case 0:
+		default:
 			return "None";
-		return startY > centerY ? "Up" : "Down";
+		}
 	}
 
-	private void runAction(int action, int direction) {
+	/**
+	 * Run the current action.
+	 */
+	private void runAction() {
+		int direction = getDirection();
+		// if in dead zone do nothing.
 		if (direction == 0) {
 			return;
 		}
-		// AudioManager mAudioManager = (AudioManager)
-		// host.getSystemService(Context.AUDIO_SERVICE);
-		//
-		// if (mAudioManager.isMusicActive()) {
-		// System.out.println("ACTIVE");
-		// Intent i = new Intent(SERVICECMD);
-		// i.putExtra(CMDNAME, CMDNEXT);
-		// host.sendBroadcast(i);
-		// }
+
+		// this is for whether key operations should get done.
 		int event = 0;
 		boolean change = false;
-		switch (action) {
+		
+		// What Action?
+		switch (currentAction) {
 		case 1:
 			break;
 		case 2:
@@ -252,7 +316,9 @@ public class RemoteView extends View {
 			return;
 		}
 
+		// Should I send a key event?
 		if (change) {
+			// Press The Button
 			long eventtime = SystemClock.uptimeMillis();
 			Intent downIntent = new Intent(Intent.ACTION_MEDIA_BUTTON, null);
 			KeyEvent downEvent = new KeyEvent(eventtime, eventtime,
@@ -260,6 +326,7 @@ public class RemoteView extends View {
 			downIntent.putExtra(Intent.EXTRA_KEY_EVENT, downEvent);
 			this.getContext().sendOrderedBroadcast(downIntent, null);
 
+			// Release The Button
 			Intent upIntent = new Intent(Intent.ACTION_MEDIA_BUTTON, null);
 			KeyEvent upEvent = new KeyEvent(eventtime, eventtime,
 					KeyEvent.ACTION_UP, event, 0);
@@ -268,6 +335,9 @@ public class RemoteView extends View {
 		}
 	}
 
+	/**
+	 * This does receives the broadcast for media changes.
+	 */
 	private BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
 		@Override
@@ -285,24 +355,21 @@ public class RemoteView extends View {
 		}
 	};
 
+	/**
+	 * Update the battery information.
+	 */
 	private void updateBattery() {
 		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 		Intent batteryStatus = this.getContext()
 				.registerReceiver(null, ifilter);
-		// // Are we charging / charged?
-		// int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS,
-		// -1);
-		// boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
-		// ||
-		// status == BatteryManager.BATTERY_STATUS_FULL;
-		//
-		// // How are we charging?
-		// int chargePlug =
-		// batteryStatus.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
-		// boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
-		// boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
+
+		int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+		boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
+				|| status == BatteryManager.BATTERY_STATUS_FULL;
 
 		BatteryLevel = batteryStatus
-				.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+				.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
+				+ " %"
+				+ (isCharging ? "+" : "");
 	}
 }

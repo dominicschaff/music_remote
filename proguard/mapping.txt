@@ -1410,53 +1410,50 @@ android.support.v4.widget.ViewDragHelper$Callback -> android.support.v4.widget.a
     int clampViewPositionHorizontal(android.view.View,int,int) -> a
     int clampViewPositionVertical(android.view.View,int,int) -> b
 com.dominic.remote.MainActivity -> com.dominic.remote.MainActivity:
-    android.app.Activity a -> a
     void onCreate(android.os.Bundle) -> onCreate
-    boolean onCreateOptionsMenu(android.view.Menu) -> onCreateOptionsMenu
-    boolean onOptionsItemSelected(android.view.MenuItem) -> onOptionsItemSelected
     void onWindowFocusChanged(boolean) -> onWindowFocusChanged
-com.dominic.remote.MainFragment -> com.dominic.remote.a:
+com.dominic.remote.MainActivity$MainFragment -> com.dominic.remote.a:
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
 com.dominic.remote.RemoteView -> com.dominic.remote.RemoteView:
-    android.graphics.Paint drawPaint -> a
+    android.graphics.Paint circlePaint -> a
     android.graphics.Paint canvasPaint -> b
     android.graphics.Paint textPaint -> c
-    android.graphics.Paint drawRed -> d
-    android.graphics.Paint textRight -> e
-    int paintColor -> f
-    android.graphics.Bitmap canvasBitmap -> g
-    float centerX -> h
-    float centerY -> i
-    float radius -> j
-    int width -> k
-    int height -> l
-    int diffs -> m
-    java.lang.String track -> n
-    java.lang.String artist -> o
-    java.lang.String album -> p
-    int BatteryLevel -> q
-    int countdown -> r
-    int countdowndefault -> s
-    float lx -> t
-    float rx -> u
-    float ly -> v
-    float ry -> w
-    float x -> x
-    float y -> y
-    int currentPoints -> z
-    boolean getX -> A
-    boolean setRadius -> B
-    float startX -> C
-    float startY -> D
-    android.content.BroadcastReceiver mReceiver -> E
-    void doSetup() -> a
+    android.graphics.Paint deadzonePaine -> d
+    android.graphics.Paint textRightPaint -> e
+    int WHITE -> f
+    int RED -> g
+    android.graphics.Bitmap canvasBitmap -> h
+    float centerX -> i
+    float centerY -> j
+    float radius -> k
+    int width -> l
+    int height -> m
+    int diffs -> n
+    java.lang.String track -> o
+    java.lang.String artist -> p
+    java.lang.String album -> q
+    java.lang.String BatteryLevel -> r
+    int COUNTDOWN_DEFAULT -> s
+    int countdown -> t
+    float lx -> u
+    float rx -> v
+    float ly -> w
+    float ry -> x
+    float x -> y
+    float y -> z
+    int currentAction -> A
+    boolean getX -> B
+    boolean setRadius -> C
+    float startX -> D
+    float startY -> E
+    android.content.BroadcastReceiver mReceiver -> F
     void onSizeChanged(int,int,int,int) -> onSizeChanged
     void onDraw(android.graphics.Canvas) -> onDraw
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
-    java.lang.String getAction(int) -> a
+    java.lang.String getAction() -> getAction
     int getDirection() -> getDirection
     java.lang.String getDirectionString() -> getDirectionString
-    void runAction(int,int) -> a
+    void runAction() -> a
     void updateBattery() -> b
     void access$0(com.dominic.remote.RemoteView,java.lang.String) -> a
     void access$1(com.dominic.remote.RemoteView,java.lang.String) -> b
