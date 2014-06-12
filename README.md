@@ -1,7 +1,7 @@
 Music Remote
 ============
 
-Simple Music remote for use in cars
+Simple Music remote for use in cars.
 
 Some Information First:
 -----------------------
@@ -25,6 +25,13 @@ to view the screen more easily.
 
 *Note:* that each action is split into two action, an up and a down.
 
+Installation:
+-------------
+
+1. Download the Remote.apk (it is signed by me)
+2. Copy to your phone.
+3. Allow apps to be installed from untrusted applications.
+4. Use file browser to install app.
 
 Sources:
 --------
