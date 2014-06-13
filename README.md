@@ -54,6 +54,6 @@ Known Bugs:
 
 Updates:
 --------
-**13 June 2014** : Allow for rotation
-**12 June 2014** : Bug fixes for devices that do not report media information.
-**11 June 2014** : Initial Version
+* **13 June 2014** : Allow for rotation
+* **12 June 2014** : Bug fixes for devices that do not report media information.
+* **11 June 2014** : Initial Version
