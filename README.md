@@ -55,7 +55,7 @@ Known Bugs:
 
 Updates:
 --------
-**13 June 2014** : V1.3 Made Text Bigger in horizontal mode, added colours for battery values, customized text for the actions so it does not just say up and down
-**13 June 2014** : Allow for rotation
-**12 June 2014** : Bug fixes for devices that do not report media information.
-**11 June 2014** : Initial Version
+* **13 June 2014** : V1.3 Made Text Bigger in horizontal mode, added colours for battery values, customized text for the actions so it does not just say up and down
+* **13 June 2014** : Allow for rotation
+* **12 June 2014** : Bug fixes for devices that do not report media information.
+* **11 June 2014** : Initial Version
