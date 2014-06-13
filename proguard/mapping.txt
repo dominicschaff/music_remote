@@ -1415,33 +1415,46 @@ com.dominic.remote.MainActivity -> com.dominic.remote.MainActivity:
 com.dominic.remote.MainActivity$MainFragment -> com.dominic.remote.a:
     android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
 com.dominic.remote.RemoteView -> com.dominic.remote.RemoteView:
-    android.graphics.Paint circlePaint -> a
-    android.graphics.Paint canvasPaint -> b
-    android.graphics.Paint textPaint -> c
-    android.graphics.Paint deadzonePaine -> d
-    android.graphics.Paint textRightPaint -> e
-    int WHITE -> f
-    int RED -> g
-    android.graphics.Bitmap canvasBitmap -> h
-    int width -> i
-    int height -> j
-    int diffs -> k
-    int rotation -> l
-    java.lang.String track -> m
-    java.lang.String artist -> n
-    java.lang.String album -> o
-    java.lang.String BatteryLevel -> p
-    int COUNTDOWN_DEFAULT -> q
-    int countdown -> r
-    float centerX -> s
-    float centerY -> t
-    float radius -> u
-    int currentAction -> v
-    boolean getX -> w
-    boolean setRadius -> x
-    float startX -> y
-    float startY -> z
-    android.content.BroadcastReceiver mReceiver -> A
+    int NONE -> a
+    int SINGLE -> b
+    int VOLUME -> c
+    int TRACKS -> d
+    int PLAYBACK -> e
+    java.lang.String[][] ACTIONS -> f
+    android.graphics.Paint circlePaint -> g
+    android.graphics.Paint canvasPaint -> h
+    android.graphics.Paint textPaint -> i
+    android.graphics.Paint deadzonePaine -> j
+    android.graphics.Paint textRightPaint -> k
+    int WHITE -> l
+    int RED -> m
+    int GREEN -> n
+    int LIGHT_GREEN -> o
+    android.graphics.Bitmap canvasBitmap -> p
+    int width -> q
+    int height -> r
+    int diffs -> s
+    int rotation -> t
+    int textSize -> u
+    int textSize2 -> v
+    int textSize3 -> w
+    int textSize4 -> x
+    java.lang.String track -> y
+    java.lang.String artist -> z
+    java.lang.String album -> A
+    java.lang.String BatteryLevel -> B
+    int BatteryLevelValue -> C
+    int COUNTDOWN_DEFAULT -> D
+    int countdown -> E
+    float centerX -> F
+    float centerY -> G
+    float radius -> H
+    int currentAction -> I
+    boolean getX -> J
+    boolean setRadius -> K
+    float startX -> L
+    float startY -> M
+    android.content.BroadcastReceiver mReceiver -> N
     void onSizeChanged(int,int,int,int) -> onSizeChanged
     void onDraw(android.graphics.Canvas) -> onDraw
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent

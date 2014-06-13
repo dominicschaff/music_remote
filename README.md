@@ -17,15 +17,16 @@ Some Information First:
 Available Actions:
 ------------------
 
-* 2 Fingers Controls Volume
-* 3 Fingers Controls Skipping
+* 2 Fingers Controls Skipping
+* 3 Fingers Controls Volume
+* 4 Fingers Controls playback (stop/play/pause)
 
 After touching with the specified fingers, you can remove all but one finger
 to view the screen more easily.
 
 *Note:* that each action is split into two action, an up and a down.
 
-Rotation is now allowed. if your screen it vertical the actions are up and down, but if your screen is horizontal then the actions are left and right.
+Rotation is now allowed. if your screen is vertical the actions are up and down, but if your screen is horizontal then the actions are left and right.
 
 Installation:
 -------------
@@ -54,6 +55,7 @@ Known Bugs:
 
 Updates:
 --------
+**13 June 2014** : V1.3 Made Text Bigger in horizontal mode, added colours for battery values, customized text for the actions so it does not just say up and down
 **13 June 2014** : Allow for rotation
 **12 June 2014** : Bug fixes for devices that do not report media information.
 **11 June 2014** : Initial Version

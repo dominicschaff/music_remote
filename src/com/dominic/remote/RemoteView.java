@@ -31,24 +31,36 @@ import android.view.View;
  */
 public class RemoteView extends View {
 
+	private final int NONE = 0, SINGLE = 1, VOLUME = 3, TRACKS = 2,
+			PLAYBACK = 4;
+
+	private final String[][] ACTIONS = new String[][] {
+			new String[] { "", "", "" }, new String[] { "", "", "" },
+			new String[] { "Previous", "No Change", "Skip" },
+			new String[] { "Lower", "No Change", "Raise" },
+			new String[] { "Stop", "No Change", "Play/Pause" } };
+
 	// drawing and canvas paint
 	private Paint circlePaint, canvasPaint, textPaint, deadzonePaine,
 			textRightPaint;
 
 	// Colours
-	private final int WHITE = 0xFFFFFFFF, RED = 0xFFFF0000;
+	private final int WHITE = 0xFFFFFFFF, RED = 0xFFFF0000, GREEN = 0xFF00FF00,
+			LIGHT_GREEN = 0xFF00FFAA;
 
 	// canvas bitmap
 	private Bitmap canvasBitmap;
 
 	// Screen information
-	private int width, height, diffs, rotation;
+	private int width, height, diffs, rotation, textSize, textSize2, textSize3,
+			textSize4;
 
 	// Media Information
 	private String track = "", artist = "", album = "";
 
 	// Battery Status checks
 	private String BatteryLevel = "";
+	private int BatteryLevelValue = 0;
 	private final int COUNTDOWN_DEFAULT = 100;
 	private int countdown = COUNTDOWN_DEFAULT;
 
@@ -63,8 +75,22 @@ public class RemoteView extends View {
 	public RemoteView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		// Initialize all the paint styles
+		// Get Screen Information
+		Display display = ((Activity) this.getContext()).getWindowManager()
+				.getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		width = size.x;
+		height = size.y;
+		diffs = height > width ? height / 20 : width / 20;
+		rotation = display.getRotation();
+		textSize = ((rotation & 1) == 1) ? height / 7 : 52;
+		textSize = (textSize < 52) ? 52 : textSize;
+		textSize2 = textSize * 2;
+		textSize3 = textSize * 3;
+		textSize4 = textSize * 4;
 
+		// Initialize all the paint styles
 		circlePaint = new Paint();
 		circlePaint.setColor(WHITE);
 		circlePaint.setAntiAlias(true);
@@ -80,23 +106,13 @@ public class RemoteView extends View {
 		textPaint = new Paint();
 		textPaint.setColor(WHITE);
 		textPaint.setAntiAlias(true);
-		textPaint.setTextSize(48);
+		textPaint.setTextSize(textSize);
 		textRightPaint = new Paint();
 		textRightPaint.setColor(WHITE);
 		textRightPaint.setAntiAlias(true);
-		textRightPaint.setTextSize(48);
+		textRightPaint.setTextSize(textSize);
 		textRightPaint.setTextAlign(Paint.Align.RIGHT);
 		canvasPaint = new Paint(Paint.DITHER_FLAG);
-
-		// Get Screen Information
-		Display display = ((Activity) this.getContext()).getWindowManager()
-				.getDefaultDisplay();
-		Point size = new Point();
-		display.getSize(size);
-		width = size.x;
-		height = size.y;
-		diffs = height / 20;
-		rotation = display.getRotation();
 
 		// Register to hear about media changes
 		IntentFilter iF = new IntentFilter();
@@ -148,21 +164,21 @@ public class RemoteView extends View {
 		}
 
 		// Media Information
-		canvas.drawText(track, 0, 48, textPaint);
-		canvas.drawText(artist, 0, 2 * 48, textPaint);
-		canvas.drawText(album, 0, 3 * 48, textPaint);
+		canvas.drawText(track, 0, textSize, textPaint);
+		canvas.drawText(artist, 0, textSize2, textPaint);
+		canvas.drawText(album, 0, textSize3, textPaint);
 
 		// Update Action Information
 		if (currentAction > 1)
-			canvas.drawText("Action: " + getAction() + " "
-					+ getDirectionString(), 0, 4 * 48, textPaint);
+			canvas.drawText(getDirectionString() + " " + getAction(), 0,
+					textSize4, textPaint);
 
 		// Get Time and Battery
 		Calendar c = Calendar.getInstance();
-		canvas.drawText(BatteryLevel, width, 2 * 48, textRightPaint);
 		canvas.drawText(
-				c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE),
-				width, 48, textRightPaint);
+				c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE)
+						+ " (" + BatteryLevel + ")", width, height - textSize,
+				textRightPaint);
 	}
 
 	public boolean onTouchEvent(MotionEvent event) {
@@ -253,14 +269,16 @@ public class RemoteView extends View {
 	 */
 	private String getAction() {
 		switch (currentAction) {
-		case 0:
+		case NONE:
 			return "None";
-		case 1:
+		case SINGLE:
 			return "Add More Fingers";
-		case 2:
-			return "Change Volume";
-		case 3:
-			return "Skip Tracks";
+		case VOLUME:
+			return "Volume";
+		case TRACKS:
+			return "Track";
+		case PLAYBACK:
+			return "Playback";
 		default:
 			return "Try other fingers";
 
@@ -275,12 +293,12 @@ public class RemoteView extends View {
 	private int getDirection() {
 		float diff = startY - centerY;
 		if (diff <= diffs && diff >= -diffs)
-			return 0;
+			return 1;
 
 		if ((rotation & 1) == 0) {
-			return startY > centerY ? 1 : -1;
+			return startY > centerY ? 2 : 0;
 		} else {
-			return startY > centerY ? -1 : 1;
+			return startY > centerY ? 0 : 2;
 		}
 	}
 
@@ -290,15 +308,7 @@ public class RemoteView extends View {
 	 * @return
 	 */
 	private String getDirectionString() {
-		switch (getDirection()) {
-		case -1:
-			return "Down";
-		case 1:
-			return "Up";
-		case 0:
-		default:
-			return "None";
-		}
+		return ACTIONS[currentAction][getDirection()];
 	}
 
 	/**
@@ -307,7 +317,7 @@ public class RemoteView extends View {
 	private void runAction() {
 		int direction = getDirection();
 		// if in dead zone do nothing.
-		if (direction == 0) {
+		if (direction == 1) {
 			return;
 		}
 
@@ -317,20 +327,25 @@ public class RemoteView extends View {
 
 		// What Action?
 		switch (currentAction) {
-		case 1:
+		case SINGLE:
 			break;
-		case 2:
+		case VOLUME:
 			AudioManager audioManager = (AudioManager) this.getContext()
 					.getSystemService(Context.AUDIO_SERVICE);
 			audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC,
-					direction, 0);
+					direction - 1, 0);
 			return;
-		case 3:
-			event = direction > 0 ? KeyEvent.KEYCODE_MEDIA_NEXT
+		case TRACKS:
+			event = direction > 1 ? KeyEvent.KEYCODE_MEDIA_NEXT
 					: KeyEvent.KEYCODE_MEDIA_PREVIOUS;
 			change = true;
 			break;
-		case 0:
+		case PLAYBACK:
+			event = direction > 1 ? KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE
+					: KeyEvent.KEYCODE_MEDIA_STOP;
+			change = true;
+			break;
+		case NONE:
 		default:
 			return;
 		}
@@ -386,9 +401,15 @@ public class RemoteView extends View {
 		boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
 				|| status == BatteryManager.BATTERY_STATUS_FULL;
 
-		BatteryLevel = batteryStatus
-				.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
-				+ " %"
-				+ (isCharging ? "+" : "");
+		BatteryLevelValue = batteryStatus.getIntExtra(
+				BatteryManager.EXTRA_LEVEL, -1);
+		BatteryLevel = BatteryLevelValue + "%" + (isCharging ? "+" : "");
+		if (BatteryLevelValue < 10) {
+			this.textRightPaint.setColor(RED);
+		} else if (BatteryLevelValue > 90 || isCharging) {
+			this.textRightPaint.setColor(GREEN);
+		} else {
+			this.textRightPaint.setColor(WHITE);
+		}
 	}
 }
