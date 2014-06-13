@@ -23,10 +23,11 @@ import android.view.View;
 /**
  * This is the monster class that does everything.
  * 
- * Note that currently I have a problem and am leaking a IntentRecevier, I am still working on how to fix this.
+ * Note that currently I have a problem and am leaking a IntentRecevier, I am
+ * still working on how to fix this.
  * 
  * @author Dominic Schaff
- *
+ * 
  */
 public class RemoteView extends View {
 
@@ -40,13 +41,8 @@ public class RemoteView extends View {
 	// canvas bitmap
 	private Bitmap canvasBitmap;
 
-	// Variables to be used in drawing and actions
-	private float centerX = 0;
-	private float centerY = 0;
-	private float radius = 0;
-
 	// Screen information
-	private int width, height, diffs;
+	private int width, height, diffs, rotation;
 
 	// Media Information
 	private String track = "", artist = "", album = "";
@@ -57,7 +53,9 @@ public class RemoteView extends View {
 	private int countdown = COUNTDOWN_DEFAULT;
 
 	// Finger Information
-	private float lx, rx, ly, ry, x, y;
+	private float centerX = 0;
+	private float centerY = 0;
+	private float radius = 0;
 	private int currentAction = 0;
 	private boolean getX = false, setRadius = false;
 	private float startX = 0, startY = 0;
@@ -98,6 +96,7 @@ public class RemoteView extends View {
 		width = size.x;
 		height = size.y;
 		diffs = height / 20;
+		rotation = display.getRotation();
 
 		// Register to hear about media changes
 		IntentFilter iF = new IntentFilter();
@@ -128,13 +127,25 @@ public class RemoteView extends View {
 		// Background
 		canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
 
-		// Dead Zone
-		if (startY != 0)
-			canvas.drawRect(0, startY - diffs, width, startY + diffs,
-					deadzonePaine);
+		if ((rotation & 1) == 0) {
+			// draw vertical
+			// Dead Zone
+			if (startY != 0)
+				canvas.drawRect(0, startY - diffs, width, startY + diffs,
+						deadzonePaine);
 
-		// Finger Location
-		canvas.drawCircle(centerX, centerY, radius, circlePaint);
+			// Finger Location
+			canvas.drawCircle(centerX, centerY, radius, circlePaint);
+		} else {
+			// draw horizontal
+			// Dead Zone
+			if (startY != 0)
+				canvas.drawRect(startY - diffs, 0, startY + diffs, height,
+						deadzonePaine);
+
+			// Finger Location
+			canvas.drawCircle(centerY, centerX, radius, circlePaint);
+		}
 
 		// Media Information
 		canvas.drawText(track, 0, 48, textPaint);
@@ -161,7 +172,7 @@ public class RemoteView extends View {
 		// Did you remove your fingers?
 		if (event.getAction() == MotionEvent.ACTION_UP) {
 			runAction();
-			rx = ry = lx = ly = centerX = centerY = radius = startX = startY = currentAction = 0;
+			centerX = centerY = radius = startX = startY = currentAction = 0;
 			return true;
 		}
 
@@ -170,6 +181,12 @@ public class RemoteView extends View {
 			setRadius = true;
 			currentAction = points;
 		}
+		float[][] fingers = new float[2][points];
+		for (int i = 0; i < points; i++) {
+			fingers[1][i] = event.getY(i);
+			fingers[0][i] = event.getX(i);
+		}
+		float[][] maxes = new float[2][3];
 
 		// What event just happened?
 		switch (event.getAction()) {
@@ -180,19 +197,9 @@ public class RemoteView extends View {
 			if (!getX || points < 2) {
 				break;
 			}
-
 			// Get x position of finger
-			lx = rx = event.getX(0);
-			for (int i = 0; i < points; i++) {
-				x = event.getX(i);
-				if (x < lx) {
-					lx = x;
-				}
-				if (x > rx) {
-					rx = x;
-				}
-			}
-			centerX = (float) (rx - lx) / 2 + lx;
+			maxes[0] = getDiffs(fingers[this.rotation % 2]);
+			centerX = (float) (maxes[0][2]) / 2 + maxes[0][0];
 			getX = false;
 			break;
 		case MotionEvent.ACTION_UP:
@@ -202,22 +209,13 @@ public class RemoteView extends View {
 		}
 
 		// Get Y position
-		ly = ry = event.getY(0);
-		for (int i = 0; i < points; i++) {
-			y = event.getY(i);
-			if (y < ly) {
-				ly = y;
-			}
-			if (y > ry) {
-				ry = y;
-			}
-		}
-		centerY = (float) (ry - ly) / 2 + ly;
+		maxes[1] = getDiffs(fingers[(this.rotation + 1) % 2]);
+		centerY = (float) (maxes[1][2]) / 2 + maxes[1][0];
 
 		// Should I re work out the radius?
 		if (setRadius) {
-			radius = (float) Math.sqrt((ry - ly) * (ry - ly) + (rx - lx)
-					* (rx - lx)) / 2;
+			radius = (float) Math.sqrt((maxes[1][2]) * (maxes[1][2])
+					+ (maxes[0][2]) * (maxes[0][2])) / 2;
 			setRadius = false;
 		}
 
@@ -230,6 +228,22 @@ public class RemoteView extends View {
 		// make the screen redraw
 		invalidate();
 		return true;
+	}
+
+	private float[] getDiffs(float[] points) {
+		float diffs[] = new float[3];
+		diffs[0] = points[0];
+		diffs[1] = points[0];
+		for (float f : points) {
+			if (f > diffs[1]) {
+				diffs[1] = f;
+			}
+			if (f < diffs[0]) {
+				diffs[0] = f;
+			}
+		}
+		diffs[2] = diffs[1] - diffs[0];
+		return diffs;
 	}
 
 	/**
@@ -262,7 +276,12 @@ public class RemoteView extends View {
 		float diff = startY - centerY;
 		if (diff <= diffs && diff >= -diffs)
 			return 0;
-		return startY > centerY ? 1 : -1;
+
+		if ((rotation & 1) == 0) {
+			return startY > centerY ? 1 : -1;
+		} else {
+			return startY > centerY ? -1 : 1;
+		}
 	}
 
 	/**
@@ -295,7 +314,7 @@ public class RemoteView extends View {
 		// this is for whether key operations should get done.
 		int event = 0;
 		boolean change = false;
-		
+
 		// What Action?
 		switch (currentAction) {
 		case 1:

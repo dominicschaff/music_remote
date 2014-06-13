@@ -1423,33 +1423,29 @@ com.dominic.remote.RemoteView -> com.dominic.remote.RemoteView:
     int WHITE -> f
     int RED -> g
     android.graphics.Bitmap canvasBitmap -> h
-    float centerX -> i
-    float centerY -> j
-    float radius -> k
-    int width -> l
-    int height -> m
-    int diffs -> n
-    java.lang.String track -> o
-    java.lang.String artist -> p
-    java.lang.String album -> q
-    java.lang.String BatteryLevel -> r
-    int COUNTDOWN_DEFAULT -> s
-    int countdown -> t
-    float lx -> u
-    float rx -> v
-    float ly -> w
-    float ry -> x
-    float x -> y
-    float y -> z
-    int currentAction -> A
-    boolean getX -> B
-    boolean setRadius -> C
-    float startX -> D
-    float startY -> E
-    android.content.BroadcastReceiver mReceiver -> F
+    int width -> i
+    int height -> j
+    int diffs -> k
+    int rotation -> l
+    java.lang.String track -> m
+    java.lang.String artist -> n
+    java.lang.String album -> o
+    java.lang.String BatteryLevel -> p
+    int COUNTDOWN_DEFAULT -> q
+    int countdown -> r
+    float centerX -> s
+    float centerY -> t
+    float radius -> u
+    int currentAction -> v
+    boolean getX -> w
+    boolean setRadius -> x
+    float startX -> y
+    float startY -> z
+    android.content.BroadcastReceiver mReceiver -> A
     void onSizeChanged(int,int,int,int) -> onSizeChanged
     void onDraw(android.graphics.Canvas) -> onDraw
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    float[] getDiffs(float[]) -> a
     java.lang.String getAction() -> getAction
     int getDirection() -> getDirection
     java.lang.String getDirectionString() -> getDirectionString
