@@ -25,6 +25,8 @@ to view the screen more easily.
 
 *Note:* that each action is split into two action, an up and a down.
 
+Rotation is now allowed. if your screen it vertical the actions are up and down, but if your screen is horizontal then the actions are left and right.
+
 Installation:
 -------------
 
@@ -47,3 +49,11 @@ Known Bugs:
 * Occasionally the screen does not clear
 * I don't get all media information
 * Sometimes the app misses some data. (Phone dependent)
+
+
+
+Updates:
+--------
+**13 June 2014** : Allow for rotation
+**12 June 2014** : Bug fixes for devices that do not report media information.
+**11 June 2014** : Initial Version
