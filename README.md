@@ -50,8 +50,16 @@ Known Bugs:
 
 Updates:
 --------
-* **29 June 2014** : V1.4.1 Updated location of receivers, and the actions. Also screen now remains blank(except for time and battery) when there are no fingers on the screen.
-* **13 June 2014** : V1.3 Made Text Bigger in horizontal mode, added colours for battery values, customized text for the actions so it does not just say up and down
+* **29 June 2014** : 
+    * V1.4.1
+    * Updated location of receivers, and the actions.
+    * Screen now remains blank(except for time and battery) when there are no fingers on the screen.
+* **13 June 2014** : 
+    * V1.3 
+    * Made Text Bigger in horizontal mode
+    * Added colours for battery values
+    * Customized text for the actions so it does not just say up and down. 
+    * Also added new action, for 4 fingers.
 * **13 June 2014** : Allow for rotation
 * **12 June 2014** : Bug fixes for devices that do not report media information.
 * **11 June 2014** : Initial Version
