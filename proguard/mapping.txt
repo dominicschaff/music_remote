@@ -1409,64 +1409,64 @@ android.support.v4.widget.ViewDragHelper$Callback -> android.support.v4.widget.a
     boolean tryCaptureView(android.view.View,int) -> a
     int clampViewPositionHorizontal(android.view.View,int,int) -> a
     int clampViewPositionVertical(android.view.View,int,int) -> b
-com.dominic.remote.MainActivity -> com.dominic.remote.MainActivity:
-    void onCreate(android.os.Bundle) -> onCreate
-    void onWindowFocusChanged(boolean) -> onWindowFocusChanged
-com.dominic.remote.MainActivity$MainFragment -> com.dominic.remote.a:
-    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
-com.dominic.remote.RemoteView -> com.dominic.remote.RemoteView:
+com.dominic.remote.Actions -> com.dominic.remote.a:
     int NONE -> a
     int SINGLE -> b
     int VOLUME -> c
     int TRACKS -> d
     int PLAYBACK -> e
     java.lang.String[][] ACTIONS -> f
-    android.graphics.Paint circlePaint -> g
-    android.graphics.Paint canvasPaint -> h
-    android.graphics.Paint textPaint -> i
-    android.graphics.Paint deadzonePaine -> j
-    android.graphics.Paint textRightPaint -> k
-    int WHITE -> l
-    int RED -> m
-    int GREEN -> n
-    int LIGHT_GREEN -> o
-    android.graphics.Bitmap canvasBitmap -> p
-    int width -> q
-    int height -> r
-    int diffs -> s
-    int rotation -> t
-    int textSize -> u
-    int textSize2 -> v
-    int textSize3 -> w
-    int textSize4 -> x
-    java.lang.String track -> y
-    java.lang.String artist -> z
-    java.lang.String album -> A
-    java.lang.String BatteryLevel -> B
-    int BatteryLevelValue -> C
-    int COUNTDOWN_DEFAULT -> D
-    int countdown -> E
-    float centerX -> F
-    float centerY -> G
-    float radius -> H
-    int currentAction -> I
-    boolean getX -> J
-    boolean setRadius -> K
-    float startX -> L
-    float startY -> M
-    android.content.BroadcastReceiver mReceiver -> N
+    android.content.Context context -> g
+    java.lang.String getAction(int) -> a
+    java.lang.String getDirectionString(int,int) -> a
+    void runAction(int,int) -> b
+com.dominic.remote.MainActivity -> com.dominic.remote.MainActivity:
+    com.dominic.remote.RemoteView rv -> a
+    void onCreate(android.os.Bundle) -> onCreate
+    void onWindowFocusChanged(boolean) -> onWindowFocusChanged
+com.dominic.remote.MainActivity$1 -> com.dominic.remote.b:
+    com.dominic.remote.MainActivity this$0 -> a
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.dominic.remote.MainActivity$2 -> com.dominic.remote.c:
+    com.dominic.remote.MainActivity this$0 -> a
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.dominic.remote.RemoteView -> com.dominic.remote.RemoteView:
+    android.graphics.Paint circlePaint -> a
+    android.graphics.Paint canvasPaint -> b
+    android.graphics.Paint textPaint -> c
+    android.graphics.Paint deadzonePaine -> d
+    android.graphics.Paint textRightPaint -> e
+    int WHITE -> f
+    int RED -> g
+    int GREEN -> h
+    int LIGHT_GREEN -> i
+    android.graphics.Bitmap canvasBitmap -> j
+    int width -> k
+    int height -> l
+    int diffs -> m
+    int rotation -> n
+    int textSize -> o
+    int textSize2 -> p
+    int textSize3 -> q
+    int textSize4 -> r
+    java.lang.String title -> s
+    java.lang.String artist -> t
+    java.lang.String album -> u
+    java.lang.String BatteryLevel -> v
+    float centerX -> w
+    float centerY -> x
+    float radius -> y
+    int currentAction -> z
+    boolean getX -> A
+    boolean setRadius -> B
+    float startX -> C
+    float startY -> D
+    com.dominic.remote.Actions actions -> E
     void onSizeChanged(int,int,int,int) -> onSizeChanged
     void onDraw(android.graphics.Canvas) -> onDraw
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
     float[] getDiffs(float[]) -> a
-    java.lang.String getAction() -> getAction
     int getDirection() -> getDirection
-    java.lang.String getDirectionString() -> getDirectionString
-    void runAction() -> a
-    void updateBattery() -> b
-    void access$0(com.dominic.remote.RemoteView,java.lang.String) -> a
-    void access$1(com.dominic.remote.RemoteView,java.lang.String) -> b
-    void access$2(com.dominic.remote.RemoteView,java.lang.String) -> c
-com.dominic.remote.RemoteView$1 -> com.dominic.remote.b:
-    com.dominic.remote.RemoteView this$0 -> a
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    void setBatteryValue(int,boolean) -> a
+    void setSongInformation(java.lang.String,java.lang.String,java.lang.String) -> a
+    void setActions(com.dominic.remote.Actions) -> setActions

@@ -1,11 +1,13 @@
 package com.dominic.remote;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * This is the main activity it runs all the other things.
@@ -15,12 +17,53 @@ import android.view.ViewGroup;
  */
 public class MainActivity extends Activity {
 
+	RemoteView rv;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		getFragmentManager().beginTransaction()
-				.add(R.id.container, new MainFragment()).commit();
+		rv = (RemoteView) this.findViewById(R.id.drawing);
+		rv.setActions(new Actions(this));
+
+		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+		registerReceiver(new BroadcastReceiver() {
+
+			@Override
+			public void onReceive(Context arg0, Intent batteryStatus) {
+				int status = batteryStatus.getIntExtra(
+						BatteryManager.EXTRA_STATUS, -1);
+				boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
+						|| status == BatteryManager.BATTERY_STATUS_FULL;
+
+				int level = batteryStatus.getIntExtra(
+						BatteryManager.EXTRA_LEVEL, -1);
+				rv.setBatteryValue(level, isCharging);
+			}
+
+		}, ifilter);
+
+		IntentFilter iF = new IntentFilter();
+		iF.addAction("com.android.music.metachanged");
+		iF.addAction("com.android.music.playstatechanged");
+		iF.addAction("com.android.music.playbackcomplete");
+		iF.addAction("com.android.music.queuechanged");
+		registerReceiver(new BroadcastReceiver() {
+
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				// String action = intent.getAction();
+				// String cmd = intent.getStringExtra("command");
+				String artist = intent.getStringExtra("artist") == null ? ""
+						: intent.getStringExtra("artist");
+				String album = intent.getStringExtra("album") == null ? ""
+						: intent.getStringExtra("album");
+				String title = intent.getStringExtra("track") == null ? ""
+						: intent.getStringExtra("track");
+				rv.setSongInformation(title, artist, album);
+			}
+		}, iF);
+
 	}
 
 	public void onWindowFocusChanged(boolean hasFocus) {
@@ -33,23 +76,8 @@ public class MainActivity extends Activity {
 							| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 							| View.SYSTEM_UI_FLAG_FULLSCREEN
 							| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-		}
-	}
-
-	/**
-	 * Internal class to show the interface.
-	 * @author Dominic Schaff
-	 *
-	 */
-	public static class MainFragment extends Fragment {
-
-		public MainFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			return inflater.inflate(R.layout.fragment_main, container, false);
+		} else {
+			unregisterReceiver(null);
 		}
 	}
 }

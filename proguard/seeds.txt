@@ -71,15 +71,12 @@ com.dominic.remote.MainActivity: MainActivity()
 com.dominic.remote.R$dimen: int activity_horizontal_margin
 com.dominic.remote.R$dimen: int activity_vertical_margin
 com.dominic.remote.R$drawable: int ic_launcher
-com.dominic.remote.R$id: int container
 com.dominic.remote.R$id: int drawing
 com.dominic.remote.R$layout: int activity_main
-com.dominic.remote.R$layout: int fragment_main
 com.dominic.remote.R$string: int app_name
 com.dominic.remote.R$style: int AppBaseTheme
 com.dominic.remote.R$style: int AppTheme
 com.dominic.remote.RemoteView
 com.dominic.remote.RemoteView: RemoteView(android.content.Context,android.util.AttributeSet)
-com.dominic.remote.RemoteView: java.lang.String getAction()
 com.dominic.remote.RemoteView: int getDirection()
-com.dominic.remote.RemoteView: java.lang.String getDirectionString()
+com.dominic.remote.RemoteView: void setActions(com.dominic.remote.Actions)

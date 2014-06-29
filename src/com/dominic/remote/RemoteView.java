@@ -3,16 +3,13 @@ package com.dominic.remote;
 import java.util.Calendar;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.media.AudioManager;
-import android.os.BatteryManager;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.Display;
@@ -31,15 +28,6 @@ import android.view.View;
  */
 public class RemoteView extends View {
 
-	private final int NONE = 0, SINGLE = 1, VOLUME = 3, TRACKS = 2,
-			PLAYBACK = 4;
-
-	private final String[][] ACTIONS = new String[][] {
-			new String[] { "", "", "" }, new String[] { "", "", "" },
-			new String[] { "Previous", "No Change", "Skip" },
-			new String[] { "Lower", "No Change", "Raise" },
-			new String[] { "Stop", "No Change", "Play/Pause" } };
-
 	// drawing and canvas paint
 	private Paint circlePaint, canvasPaint, textPaint, deadzonePaine,
 			textRightPaint;
@@ -56,13 +44,10 @@ public class RemoteView extends View {
 			textSize4;
 
 	// Media Information
-	private String track = "", artist = "", album = "";
+	private String title = "", artist = "", album = "";
 
 	// Battery Status checks
 	private String BatteryLevel = "";
-	private int BatteryLevelValue = 0;
-	private final int COUNTDOWN_DEFAULT = 100;
-	private int countdown = COUNTDOWN_DEFAULT;
 
 	// Finger Information
 	private float centerX = 0;
@@ -71,6 +56,8 @@ public class RemoteView extends View {
 	private int currentAction = 0;
 	private boolean getX = false, setRadius = false;
 	private float startX = 0, startY = 0;
+	
+	private Actions actions;
 
 	public RemoteView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -115,15 +102,6 @@ public class RemoteView extends View {
 		canvasPaint = new Paint(Paint.DITHER_FLAG);
 
 		// Register to hear about media changes
-		IntentFilter iF = new IntentFilter();
-		iF.addAction("com.android.music.metachanged");
-		iF.addAction("com.android.music.playstatechanged");
-		iF.addAction("com.android.music.playbackcomplete");
-		iF.addAction("com.android.music.queuechanged");
-		getContext().registerReceiver(mReceiver, iF);
-
-		// Get updated battery information
-		updateBattery();
 	}
 
 	@Override
@@ -135,11 +113,6 @@ public class RemoteView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		// Check if battery should be updated
-		countdown--;
-		if (countdown < 0) {
-			updateBattery();
-			countdown = COUNTDOWN_DEFAULT;
-		}
 		// Background
 		canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
 
@@ -163,22 +136,26 @@ public class RemoteView extends View {
 			canvas.drawCircle(centerY, centerX, radius, circlePaint);
 		}
 
-		// Media Information
-		canvas.drawText(track, 0, textSize, textPaint);
-		canvas.drawText(artist, 0, textSize2, textPaint);
-		canvas.drawText(album, 0, textSize3, textPaint);
+		if (currentAction > 0) {
+			// Media Information
+			canvas.drawText(title, 0, textSize, textPaint);
+			canvas.drawText(artist, 0, textSize2, textPaint);
+			canvas.drawText(album, 0, textSize3, textPaint);
+		}
 
 		// Update Action Information
 		if (currentAction > 1)
-			canvas.drawText(getDirectionString() + " " + getAction(), 0,
+			canvas.drawText(actions.getDirectionString(currentAction, getDirection()) + " " + actions.getAction(currentAction), 0,
 					textSize4, textPaint);
 
 		// Get Time and Battery
 		Calendar c = Calendar.getInstance();
 		canvas.drawText(
-				c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE)
-						+ " (" + BatteryLevel + ")", width, height - textSize,
-				textRightPaint);
+				(c.get(Calendar.HOUR_OF_DAY) < 10 ? "0" : "")
+						+ c.get(Calendar.HOUR_OF_DAY) + ":"
+						+ (c.get(Calendar.MINUTE) < 10 ? "0" : "")
+						+ c.get(Calendar.MINUTE) + " (" + BatteryLevel + ")",
+				width, height - textSize, textRightPaint);
 	}
 
 	public boolean onTouchEvent(MotionEvent event) {
@@ -187,7 +164,7 @@ public class RemoteView extends View {
 
 		// Did you remove your fingers?
 		if (event.getAction() == MotionEvent.ACTION_UP) {
-			runAction();
+			actions.runAction(currentAction, getDirection());
 			centerX = centerY = radius = startX = startY = currentAction = 0;
 			return true;
 		}
@@ -263,29 +240,6 @@ public class RemoteView extends View {
 	}
 
 	/**
-	 * This is to print out the action.
-	 * 
-	 * @return Which action must run.
-	 */
-	private String getAction() {
-		switch (currentAction) {
-		case NONE:
-			return "None";
-		case SINGLE:
-			return "Add More Fingers";
-		case VOLUME:
-			return "Volume";
-		case TRACKS:
-			return "Track";
-		case PLAYBACK:
-			return "Playback";
-		default:
-			return "Try other fingers";
-
-		}
-	}
-
-	/**
 	 * Get the direction (up or down).
 	 * 
 	 * @return The direction.
@@ -302,114 +256,28 @@ public class RemoteView extends View {
 		}
 	}
 
-	/**
-	 * Get the text description of the direction
-	 * 
-	 * @return
-	 */
-	private String getDirectionString() {
-		return ACTIONS[currentAction][getDirection()];
-	}
-
-	/**
-	 * Run the current action.
-	 */
-	private void runAction() {
-		int direction = getDirection();
-		// if in dead zone do nothing.
-		if (direction == 1) {
-			return;
-		}
-
-		// this is for whether key operations should get done.
-		int event = 0;
-		boolean change = false;
-
-		// What Action?
-		switch (currentAction) {
-		case SINGLE:
-			break;
-		case VOLUME:
-			AudioManager audioManager = (AudioManager) this.getContext()
-					.getSystemService(Context.AUDIO_SERVICE);
-			audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC,
-					direction - 1, 0);
-			return;
-		case TRACKS:
-			event = direction > 1 ? KeyEvent.KEYCODE_MEDIA_NEXT
-					: KeyEvent.KEYCODE_MEDIA_PREVIOUS;
-			change = true;
-			break;
-		case PLAYBACK:
-			event = direction > 1 ? KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE
-					: KeyEvent.KEYCODE_MEDIA_STOP;
-			change = true;
-			break;
-		case NONE:
-		default:
-			return;
-		}
-
-		// Should I send a key event?
-		if (change) {
-			// Press The Button
-			long eventtime = SystemClock.uptimeMillis();
-			Intent downIntent = new Intent(Intent.ACTION_MEDIA_BUTTON, null);
-			KeyEvent downEvent = new KeyEvent(eventtime, eventtime,
-					KeyEvent.ACTION_DOWN, event, 0);
-			downIntent.putExtra(Intent.EXTRA_KEY_EVENT, downEvent);
-			this.getContext().sendOrderedBroadcast(downIntent, null);
-
-			// Release The Button
-			Intent upIntent = new Intent(Intent.ACTION_MEDIA_BUTTON, null);
-			KeyEvent upEvent = new KeyEvent(eventtime, eventtime,
-					KeyEvent.ACTION_UP, event, 0);
-			upIntent.putExtra(Intent.EXTRA_KEY_EVENT, upEvent);
-			this.getContext().sendOrderedBroadcast(upIntent, null);
-		}
-	}
-
-	/**
-	 * This does receives the broadcast for media changes.
-	 */
-	private BroadcastReceiver mReceiver = new BroadcastReceiver() {
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// String action = intent.getAction();
-			// String cmd = intent.getStringExtra("command");
-			artist = intent.getStringExtra("artist") == null ? "" : intent
-					.getStringExtra("artist");
-			album = intent.getStringExtra("album") == null ? "" : intent
-					.getStringExtra("album");
-			track = intent.getStringExtra("track") == null ? "" : intent
-					.getStringExtra("track");
-
-			invalidate();
-		}
-	};
-
-	/**
-	 * Update the battery information.
-	 */
-	private void updateBattery() {
-		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-		Intent batteryStatus = this.getContext()
-				.registerReceiver(null, ifilter);
-
-		int status = batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-		boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
-				|| status == BatteryManager.BATTERY_STATUS_FULL;
-
-		BatteryLevelValue = batteryStatus.getIntExtra(
-				BatteryManager.EXTRA_LEVEL, -1);
-		BatteryLevel = BatteryLevelValue + "%" + (isCharging ? "+" : "");
+	/* ####################################################### */
+	public void setBatteryValue(int BatteryLevelValue, boolean charging) {
+		BatteryLevel = BatteryLevelValue + "%" + (charging ? "+" : "");
 		if (BatteryLevelValue < 10) {
 			this.textRightPaint.setColor(RED);
-		} else if (BatteryLevelValue > 90 || isCharging) {
+		} else if (BatteryLevelValue > 90 || charging) {
 			this.textRightPaint.setColor(GREEN);
 		} else {
 			this.textRightPaint.setColor(WHITE);
 		}
+		invalidate();
+	}
+
+	public void setSongInformation(String title, String artist, String album) {
+		this.title = title;
+		this.artist = artist;
+		this.album = album;
+		invalidate();
+	}
+	
+	public void setActions(Actions actions)
+	{
+		this.actions = actions;
 	}
 }
