@@ -27,42 +27,14 @@ public class MainActivity extends Activity {
 		rv.setActions(new Actions(this));
 
 		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-		registerReceiver(new BroadcastReceiver() {
-
-			@Override
-			public void onReceive(Context arg0, Intent batteryStatus) {
-				int status = batteryStatus.getIntExtra(
-						BatteryManager.EXTRA_STATUS, -1);
-				boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
-						|| status == BatteryManager.BATTERY_STATUS_FULL;
-
-				int level = batteryStatus.getIntExtra(
-						BatteryManager.EXTRA_LEVEL, -1);
-				rv.setBatteryValue(level, isCharging);
-			}
-
-		}, ifilter);
+		registerReceiver(musicReceiver, ifilter);
 
 		IntentFilter iF = new IntentFilter();
 		iF.addAction("com.android.music.metachanged");
 		iF.addAction("com.android.music.playstatechanged");
 		iF.addAction("com.android.music.playbackcomplete");
 		iF.addAction("com.android.music.queuechanged");
-		registerReceiver(new BroadcastReceiver() {
-
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				// String action = intent.getAction();
-				// String cmd = intent.getStringExtra("command");
-				String artist = intent.getStringExtra("artist") == null ? ""
-						: intent.getStringExtra("artist");
-				String album = intent.getStringExtra("album") == null ? ""
-						: intent.getStringExtra("album");
-				String title = intent.getStringExtra("track") == null ? ""
-						: intent.getStringExtra("track");
-				rv.setSongInformation(title, artist, album);
-			}
-		}, iF);
+		registerReceiver(batteryReceiver, iF);
 
 	}
 
@@ -77,7 +49,41 @@ public class MainActivity extends Activity {
 							| View.SYSTEM_UI_FLAG_FULLSCREEN
 							| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 		} else {
-			unregisterReceiver(null);
+			unregisterReceiver(batteryReceiver);
+			unregisterReceiver(musicReceiver);
 		}
 	}
+	
+	// Receivers:
+	
+	BroadcastReceiver batteryReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// String action = intent.getAction();
+			// String cmd = intent.getStringExtra("command");
+			String artist = intent.getStringExtra("artist") == null ? ""
+					: intent.getStringExtra("artist");
+			String album = intent.getStringExtra("album") == null ? ""
+					: intent.getStringExtra("album");
+			String title = intent.getStringExtra("track") == null ? ""
+					: intent.getStringExtra("track");
+			rv.setSongInformation(title, artist, album);
+		}
+	};
+	BroadcastReceiver musicReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context arg0, Intent batteryStatus) {
+			int status = batteryStatus.getIntExtra(
+					BatteryManager.EXTRA_STATUS, -1);
+			boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
+					|| status == BatteryManager.BATTERY_STATUS_FULL;
+
+			int level = batteryStatus.getIntExtra(
+					BatteryManager.EXTRA_LEVEL, -1);
+			rv.setBatteryValue(level, isCharging);
+		}
+
+	};
 }

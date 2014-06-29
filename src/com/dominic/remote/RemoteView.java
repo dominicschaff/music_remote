@@ -4,16 +4,12 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.media.AudioManager;
-import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.view.Display;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -33,8 +29,7 @@ public class RemoteView extends View {
 			textRightPaint;
 
 	// Colours
-	private final int WHITE = 0xFFFFFFFF, RED = 0xFFFF0000, GREEN = 0xFF00FF00,
-			LIGHT_GREEN = 0xFF00FFAA;
+	private final int WHITE = 0xFFFFFFFF, RED = 0xFFFF0000, GREEN = 0xFF00FF00;
 
 	// canvas bitmap
 	private Bitmap canvasBitmap;

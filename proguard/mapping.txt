@@ -1422,6 +1422,8 @@ com.dominic.remote.Actions -> com.dominic.remote.a:
     void runAction(int,int) -> b
 com.dominic.remote.MainActivity -> com.dominic.remote.MainActivity:
     com.dominic.remote.RemoteView rv -> a
+    android.content.BroadcastReceiver batteryReceiver -> b
+    android.content.BroadcastReceiver musicReceiver -> c
     void onCreate(android.os.Bundle) -> onCreate
     void onWindowFocusChanged(boolean) -> onWindowFocusChanged
 com.dominic.remote.MainActivity$1 -> com.dominic.remote.b:
@@ -1439,29 +1441,28 @@ com.dominic.remote.RemoteView -> com.dominic.remote.RemoteView:
     int WHITE -> f
     int RED -> g
     int GREEN -> h
-    int LIGHT_GREEN -> i
-    android.graphics.Bitmap canvasBitmap -> j
-    int width -> k
-    int height -> l
-    int diffs -> m
-    int rotation -> n
-    int textSize -> o
-    int textSize2 -> p
-    int textSize3 -> q
-    int textSize4 -> r
-    java.lang.String title -> s
-    java.lang.String artist -> t
-    java.lang.String album -> u
-    java.lang.String BatteryLevel -> v
-    float centerX -> w
-    float centerY -> x
-    float radius -> y
-    int currentAction -> z
-    boolean getX -> A
-    boolean setRadius -> B
-    float startX -> C
-    float startY -> D
-    com.dominic.remote.Actions actions -> E
+    android.graphics.Bitmap canvasBitmap -> i
+    int width -> j
+    int height -> k
+    int diffs -> l
+    int rotation -> m
+    int textSize -> n
+    int textSize2 -> o
+    int textSize3 -> p
+    int textSize4 -> q
+    java.lang.String title -> r
+    java.lang.String artist -> s
+    java.lang.String album -> t
+    java.lang.String BatteryLevel -> u
+    float centerX -> v
+    float centerY -> w
+    float radius -> x
+    int currentAction -> y
+    boolean getX -> z
+    boolean setRadius -> A
+    float startX -> B
+    float startY -> C
+    com.dominic.remote.Actions actions -> D
     void onSizeChanged(int,int,int,int) -> onSizeChanged
     void onDraw(android.graphics.Canvas) -> onDraw
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
